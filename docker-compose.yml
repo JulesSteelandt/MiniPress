@@ -74,7 +74,7 @@ services:
     ports:
       - "17014:80"
     environment:
-      - PMA_HOST=gift.db
+      - PMA_HOST=minipress.db
     networks:
       - minipress.net
     depends_on:
