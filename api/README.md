@@ -1,5 +1,5 @@
 # 🖧 MiniPress
-## Partie API 🖹
+## Partie API 🖹 - Admin 🧔
 
 # Fonctionnalités 🪣
 ## 1 Créer un article
