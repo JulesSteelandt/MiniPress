@@ -1,0 +1,81 @@
+version: "3"
+
+networks:
+  minipress.net:
+    driver: bridge
+
+services:
+  php:
+    image: canals/php:latest
+    ports:
+      - "17010:80"
+    environment:
+      - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+      - https_proxy=http://www-cache-iutnc.univ-lorraine.fr:3128
+    volumes:
+      - ./admin/public:/var/www/html
+      - ./admin/src:/var/www/src
+    networks:
+      - minipress.net
+    working_dir: /var/www/src
+    depends_on:
+      - database
+
+  web:
+    image: httpd:latest
+    ports:
+      - "17011:80"
+    environment:
+      - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+      - https_proxy=http://www-cache-iutnc.univ-lorraine.fr:3128
+    volumes:
+      - ./web/public:/var/www/html
+      - ./web/src:/var/www/src
+    networks:
+      - minipress.net
+    working_dir: /var/www/src
+    depends_on:
+      - database
+
+
+  api:
+    image: canals/php:latest
+    ports:
+      - "17012:80"
+    environment:
+      - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+      - https_proxy=http://www-cache-iutnc.univ-lorraine.fr:3128
+    volumes:
+      - ./api/public:/var/www/html
+      - ./api/src:/var/www/src
+    working_dir: /var/www/src
+    networks:
+      - minipress.net
+    depends_on:
+      - database
+
+
+  database:
+    image: mariadb:latest
+    ports:
+      - "17013:3306"
+    networks:
+      minipress.net:
+        aliases:
+          - minipress.db
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+
+
+  dbAdmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "17014:80"
+    environment:
+      - PMA_HOST=gift.db
+    networks:
+      - minipress.net
+    depends_on:
+      - database
