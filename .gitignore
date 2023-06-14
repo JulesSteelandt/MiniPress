@@ -6,3 +6,5 @@ src/vendor/
 /api/src/conf/gift.db.conf.ini
 /composer.phar
 /.env
+/admin/vendor/
+/api/vendor/
