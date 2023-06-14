@@ -1,0 +1,7 @@
+.idea/
+src/vendor/
+/api/src/vendor/
+/appli/src/vendor/
+/appli/src/conf/gift.db.conf.ini
+/api/src/conf/gift.db.conf.ini
+/composer.phar
