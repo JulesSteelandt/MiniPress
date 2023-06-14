@@ -1,10 +1,6 @@
 .idea/
-src/vendor/
-/api/src/vendor/
-/appli/src/vendor/
-/appli/src/conf/gift.db.conf.ini
-/api/src/conf/gift.db.conf.ini
-/composer.phar
+/admin/src/conf/admin.conf.ini
+/api/src/conf/api.conf.ini
 /.env
 /admin/vendor/
 /api/vendor/
