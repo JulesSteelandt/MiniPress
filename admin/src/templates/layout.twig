@@ -1,0 +1,18 @@
+<html lang="fr">
+<head>
+    <title>Appli</title>
+    <link rel="stylesheet" href="{{ base_path() }}/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>MiniPress</h1>
+    </header>
+    <nav>
+        <a href="{{ url_for('homePage') }}">Home</a>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
