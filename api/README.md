@@ -19,13 +19,13 @@
 ## 8 Auteurs
 ❌ Fonctionnalité non réalisée
 ## 9 Api : liste des catégories
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 10 Api : liste des articles
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 11 Api : articles d’une catégorie
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 12 Api : article complet
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 13 Api : liste des articles d’un auteur
 ❌ Fonctionnalité non réalisée
 ## 14 Publication/dépublication des articles
