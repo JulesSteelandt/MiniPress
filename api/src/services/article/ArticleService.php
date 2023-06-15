@@ -4,7 +4,7 @@ namespace minipress\api\services\article;
 
 use minipress\api\models\Article;
 
-// gère les actions sur les Articles
+// gère les requetes sql sur Article
 class ArticleService {
 
     //récupère tous les articles
