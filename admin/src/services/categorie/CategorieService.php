@@ -13,4 +13,11 @@ class CategorieService
         return Categorie::all()->toArray();
     }
 
+    //Créer une catégorie
+    public static function createCategorie(string $nom){
+        $cat = new Categorie();
+        $cat->nom = $nom;
+        $cat->save();
+    }
+
 }

@@ -30,6 +30,6 @@ class GetFormCreateArticle extends AbstractAction {
 
         //Renvoie la page formCreateCategorie.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/article/formCreateCategorie.twig',['csrf' => $csrf['token'], 'categs'=>$categs]);
+        return $view->render($response, '/article/formCreateArticle.twig',['csrf' => $csrf['token'], 'categs'=>$categs]);
     }
 }
