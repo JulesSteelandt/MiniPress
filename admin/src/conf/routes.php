@@ -12,6 +12,12 @@ return function (Slim\App $app): void {
     //Formulaire de création d'un article
     $app->get('/article/new[/]', GetFormCreateCategorie::class)->setName('formArticle');
 
+    //Creation d'un article
+    $app->post('/article/new[/]', PostFormCreateArticle::class)->setName('CreateArticle');
+
+    //Formulaire de création d'une catégorie
+    $app->get('/article/new[/]', GetFormCreateCategorie::class)->setName('formArticle');
+
     $app->post('/article/new[/]', PostFormCreateArticle::class)->setName('CreateArticle');
 
 };

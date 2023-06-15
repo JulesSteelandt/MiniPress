@@ -1,6 +1,6 @@
 <?php
 
-namespace minipress\admin\actions\article;
+namespace minipress\admin\actions\categorie;
 
 use minipress\admin\actions\AbstractAction;
 use minipress\admin\services\article\ArticleService;
