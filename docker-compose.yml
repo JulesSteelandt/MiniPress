@@ -15,6 +15,7 @@ services:
     volumes:
       - ./admin/public:/var/www/html
       - ./admin/src:/var/www/src
+      - ./admin/vendor:/var/www/vendor
     networks:
       - minipress.net
     working_dir: /var/www/src
@@ -48,6 +49,7 @@ services:
     volumes:
       - ./api/public:/var/www/html
       - ./api/src:/var/www/src
+      - ./api/vendor:/var/www/vendor
     working_dir: /var/www/src
     networks:
       - minipress.net
