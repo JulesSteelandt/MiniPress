@@ -13,8 +13,11 @@ class GetArticlesByIdAction extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
+        //Récupère un article selon son id donné dans l'URL
         $article = ArticleService::getArticleById($args['id_a']);
 
+
+        //tableau contenant les informations voulues
         $data = [
             'type' => 'collection',
         ];
@@ -32,6 +35,7 @@ class GetArticlesByIdAction extends AbstractAction
                 ],
             ];
 
+        // les envois sous format json
         $response->getBody()->write(json_encode($data));
 
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);

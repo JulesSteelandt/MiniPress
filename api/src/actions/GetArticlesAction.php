@@ -13,8 +13,10 @@ class GetArticlesAction extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
+        //Récupère les articles
         $articles = ArticleService::getArticle();
 
+        //tableau contenant les informations voulues
         $data = [
             'type' => 'collection',
             'count' => count($articles),
@@ -34,6 +36,8 @@ class GetArticlesAction extends AbstractAction
             ];
         }
 
+
+        // les envois sous format json
         $response->getBody()->write(json_encode($data));
 
         return $response->withHeader('Content-Type', 'application/json')->withStatus(200);
