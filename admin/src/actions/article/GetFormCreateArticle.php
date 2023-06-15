@@ -10,22 +10,25 @@ use Slim\Exception\HttpBadRequestException;
 use Slim\Views\Twig;
 use minipress\admin\services\categorie\CategorieService;
 
-// affiche une catégorie
+// affiche le form d'un article
 class GetFormCreateArticle extends AbstractAction {
 
     // méthode magique invoquée pour gérer l'action
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
 
+        //Génère un token csrf
         $csrf = CsrfService::generate();
-
-        $categs = CategorieService::getCategorie();
 
         if ($csrf['status'] === 500) {
             // lance une erreur
             throw new HttpBadRequestException($request, $csrf['message']);
         }
 
-        //Renvoie la page homePage.twig
+        //récupère les catégories
+        $categs = CategorieService::getCategorie();
+
+
+        //Renvoie la page formCreateArticle.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/article/formCreateArticle.twig',['csrf' => $csrf['token'], 'categs'=>$categs]);
     }
