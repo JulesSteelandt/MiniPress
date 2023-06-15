@@ -17,5 +17,10 @@ class ArticleService {
         return Article::find($id)->toArray();
     }
 
+    //récupère les articles d'une catégorie
+    public static function getArticleByCategorie(int $catId){
+        return Article::where("categorie_id", $catId)->get()->toArray();
+    }
+
 
 }
