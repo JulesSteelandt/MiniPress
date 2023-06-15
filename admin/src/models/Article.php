@@ -1,6 +1,6 @@
 <?php
 
-namespace minipress\api\models;
+namespace minipress\admin\models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

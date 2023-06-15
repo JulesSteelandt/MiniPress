@@ -1,4 +1,4 @@
-llRewriteEngine On
+RewriteEngine On
 #
 # RewriteBase indispensable sur webetu :
 

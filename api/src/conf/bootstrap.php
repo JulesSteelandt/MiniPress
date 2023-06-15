@@ -1,8 +1,7 @@
 <?php
 
-use minipress\api\services\Eloquent\Eloquent;
 use Slim\Factory\AppFactory;
-
+use minipress\api\services\Eloquent\Eloquent;
 // crée l'app et le moteur de templates
 $app = AppFactory::create();
 
