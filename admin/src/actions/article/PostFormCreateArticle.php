@@ -15,6 +15,12 @@ class PostFormCreateArticle extends AbstractAction {
 
         $params = $request->getParsedBody();
 
+        $titre = $params['titre'];
+        $resume = $params['resume'];
+        $contenu = $params['contenu'];
+        $cat = $params['categorie'];
+
+
 
 
         //Renvoie la page homePage.twig

@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Views\Twig;
+use minipress\admin\services\categorie\CategorieService;
 
 // affiche une catégorie
 class GetFormCreateArticle extends AbstractAction {
@@ -17,6 +18,8 @@ class GetFormCreateArticle extends AbstractAction {
 
         $csrf = CsrfService::generate();
 
+        $categs = CategorieService::getCategorie();
+
         if ($csrf['status'] === 500) {
             // lance une erreur
             throw new HttpBadRequestException($request, $csrf['message']);
@@ -24,6 +27,6 @@ class GetFormCreateArticle extends AbstractAction {
 
         //Renvoie la page homePage.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/article/formCreateArticle.twig',['csrf' => $csrf['token']]);
+        return $view->render($response, '/article/formCreateArticle.twig',['csrf' => $csrf['token'], 'categs'=>$categs]);
     }
 }
