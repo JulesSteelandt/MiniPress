@@ -11,7 +11,7 @@ CREATE TABLE utilisateurs
     email            VARCHAR(255) PRIMARY KEY,
     mot_de_passe     VARCHAR(255),
     nom              VARCHAR(255),
-    prenom           VARCHAR(255),
+    prenom           VARCHAR(255)
 );
 
 -- Table "article"
