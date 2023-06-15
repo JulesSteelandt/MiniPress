@@ -3,15 +3,15 @@
 
 # Fonctionnalités 🪣
 ## 1 Créer un article
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 2 Créer un article en choisissant une catégorie
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 3 Afficher la liste des articles
 ❌ Fonctionnalité non réalisée
 ## 4 Afficher la liste des articles en filtrant par catégorie
 ❌ Fonctionnalité non réalisée
 ## 5 Création d’une catégorie
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 6 Formulaire d’authentification
 ❌ Fonctionnalité non réalisée
 ## 7 Contrôle d’accès
