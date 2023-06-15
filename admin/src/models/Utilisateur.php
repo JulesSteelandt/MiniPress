@@ -11,7 +11,7 @@ class Utilisateur extends Model
     protected $table = 'utilisateur';
     protected $primaryKey = 'email';
     protected $keyType = 'string';
-    public $timestamps = true;
+    public $timestamps = false;
 
     //Liaison entre utilisateur et article
     public function article() : hasMany

@@ -9,6 +9,8 @@
     </header>
     <nav>
         <a href="{{ url_for('homePage') }}">Home</a>
+        <a href="{{ url_for('formArticle') }}">Créer son article</a>
+        <a href="{{ url_for('formCat') }}">Créer sa catégorie</a>
     </nav>
     <main>
         {% block content %}
