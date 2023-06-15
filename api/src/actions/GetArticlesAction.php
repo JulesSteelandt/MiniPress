@@ -18,19 +18,18 @@ class GetArticlesAction extends AbstractAction
         $data = [
             'type' => 'collection',
             'count' => count($articles),
-            ['links' => [
-                'all' => [
-                    'href' => '/articles/'
-                ],
-              ],
-            ]
         ];
         foreach ($articles as $article) {
             $data['articles'][] = [
-                'categorie' => [
+                'article' => [
                     'titre' => $article['titre'],
                     'date_creation' => $article['date_creation'],
                     'auteur' => $article['auteur'],
+                ],
+                'links' => [
+                    'self' => [
+                        'href' => '/api/articles/'.$article['id'],
+                    ],
                 ],
             ];
         }
