@@ -1,7 +1,9 @@
 <?php
 
-namespace minipress\api\src\services\Eloquent;
+namespace minipress\api\services\Eloquent;
 
+
+use Illuminate\Database\Capsule\Manager;
 
 class Eloquent
 {
