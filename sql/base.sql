@@ -27,8 +27,7 @@ CREATE TABLE utilisateurs
     email            VARCHAR(255) PRIMARY KEY,
     mot_de_passe     VARCHAR(255),
     nom              VARCHAR(255),
-    prenom           VARCHAR(255),
-    date_inscription DATETIME
+    prenom           VARCHAR(255),gi
 );
 
 INSERT INTO utilisateurs values ('user1@mail.com','$2y$10$wpmkRKMEvVmFLDWZcENR4et2vz8v9gjm4hQT8VB5TV6cGuIlBLzMG','user1','leGoat');
