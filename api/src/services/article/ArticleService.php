@@ -11,5 +11,9 @@ class ArticleService {
         return Article::all()->toArray();
     }
 
+    public static function getArticleById(int $id): array {
+        return Article::find($id)->toArray();
+    }
+
 
 }
