@@ -5,7 +5,7 @@ namespace minipress\api\actions;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetArticlesByCat extends AbstractAction
+class GetArticlesByCatAction extends AbstractAction
 {
 
     // méthode invoquée automatiquement à la création de la page
