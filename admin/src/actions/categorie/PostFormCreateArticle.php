@@ -9,7 +9,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
 
-// creer un article
+
+// creer une catégorie
 class PostFormCreateArticle extends AbstractAction {
 
     // méthode magique invoquée pour gérer l'action
@@ -32,6 +33,6 @@ class PostFormCreateArticle extends AbstractAction {
 
         //Renvoie la page formCreateCategorie.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/article/articleCreated.twig');
+        return $view->render($response, '/article/formCreateCategorie.twig');
     }
 }
