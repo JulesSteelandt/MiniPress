@@ -8,6 +8,10 @@ use minipress\admin\actions\categorie\GetFormCreateCategorie;
 use minipress\admin\actions\categorie\GetListCategories;
 use minipress\admin\actions\categorie\PostFormCreateCategorie;
 use minipress\admin\actions\GetHomePageAction;
+use minipress\admin\actions\user\GetFormConnexionUser;
+use minipress\admin\actions\user\PostFormConnexionUser;
+use minipress\admin\actions\user\GetFormCreateUser;
+use minipress\admin\actions\user\PostFormCreateUser;
 
 return function (Slim\App $app): void {
 
@@ -34,5 +38,17 @@ return function (Slim\App $app): void {
 
     //Liste des articles par catégorie
     $app->get('/categories/{id_cat}/articles[/]', GetListArticlesByCat::class)->setName('listArticleByCat');
+
+    //Liste des articles par catégorie
+    $app->get('/signIn[/]', GetFormConnexionUser::class)->setName('connexion');
+
+    //Liste des articles par catégorie
+    $app->post('/signIn[/]', PostFormConnexionUser::class)->setName('connexion');
+
+    //Liste des articles par catégorie
+    $app->get('/signUp[/]', GetFormCreateUser::class)->setName('inscription');
+
+    //Liste des articles par catégorie
+    $app->post('/signUp[/]', PostFormCreateUser::class)->setName('inscription');
 
 };
