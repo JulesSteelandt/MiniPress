@@ -14,12 +14,16 @@ class ArticleService {
 
     //récupère un article avec son id
     public static function getArticleById(int $id): array {
-        return Article::find($id)->toArray();
+        return Article::find($id)->first()->toArray();
     }
 
     //récupère les articles d'une catégorie
-    public static function getArticleByCategorie(int $catId){
-        return Article::where("categorie_id", $catId)->get()->toArray();
+    public static function getArticleByCategorieSort(int $catId, bool $sort= true){
+        $tri = "asc";
+        if (!$sort) {
+            $tri = "desc";
+        }
+        return Article::where("categorie_id", $catId)->orderBy("date_creation", $tri)->get()->toArray();
     }
 
     //Donne la liste des articles triés par ordre de création, false pour inverser l'ordre

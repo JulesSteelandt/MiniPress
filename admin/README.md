@@ -9,7 +9,7 @@
 ## 3 Afficher la liste des articles
 ✅ Fonctionnalité fini
 ## 4 Afficher la liste des articles en filtrant par catégorie
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 5 Création d’une catégorie
 ✅ Fonctionnalité fini
 ## 6 Formulaire d’authentification

@@ -19,6 +19,6 @@ class GetListArticles extends AbstractAction {
 
         //Renvoie la page listCategories.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/article/listCategories.twig',['articles'=>$articles]);
+        return $view->render($response, '/article/listArticles.twig',['articles'=>$articles]);
     }
 }
