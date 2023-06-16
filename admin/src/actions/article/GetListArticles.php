@@ -17,8 +17,8 @@ class GetListArticles extends AbstractAction {
         //On récupère toute la liste des articles par date de création inverse
         $articles = ArticleService::getArticleSortDateCrea(false);
 
-        //Renvoie la page formCreateCategorie.twig
+        //Renvoie la page listCategories.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/article/listArticles.twig',['articles'=>$articles]);
+        return $view->render($response, '/article/listCategories.twig',['articles'=>$articles]);
     }
 }
