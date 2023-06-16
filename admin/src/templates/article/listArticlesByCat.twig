@@ -1,0 +1,11 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <h1>Liste des articles de la catégorie {{ categorie.nom }}</h1>
+    <ul>
+    {% for article in articles%}
+        <li>{{ article.titre }} : {{ article.date_creation }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -13,6 +13,14 @@ class CategorieService
         return Categorie::all()->toArray();
     }
 
+    //récupère une catégorie avec son id
+    public static function getCategorieById(int $id){
+        return Categorie::find($id)->first()->toArray();
+    }
+
+
+
+
     //Créer une catégorie
     public static function createCategorie(string $nom){
         $cat = new Categorie();

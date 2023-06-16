@@ -8,6 +8,7 @@ use minipress\admin\services\utils\CsrfService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
+use Parsedown;
 
 // creer un article
 class PostFormCreateArticle extends AbstractAction {
@@ -26,6 +27,10 @@ class PostFormCreateArticle extends AbstractAction {
 
         //Verifie le token
         CsrfService::check($csrf);
+
+        $markdownConvertor = new Parsedown();
+        $resume = $markdownConvertor->text($resume);
+        $contenu = $markdownConvertor->text($contenu);
 
         //Insertion en base de donnée
         ArticleService::createArticle($titre,$resume,$contenu,$cat);
