@@ -27,6 +27,11 @@ class GetArticleByCategorie extends AbstractAction
                     'date_creation' => $art['date_creation'],
                     'auteur' => $art['auteur'],
                 ],
+                'links' => [
+                    'self' => [
+                        'href' => '/api/articles/'.$art['id'],
+                    ],
+                ],
             ];
         }
 
