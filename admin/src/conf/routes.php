@@ -1,11 +1,14 @@
 <?php
 
 use minipress\admin\actions\article\GetFormCreateArticle;
+use minipress\admin\actions\article\GetListArticles;
+use minipress\admin\actions\article\GetListArticlesByCat;
+use minipress\admin\actions\article\PostFormCreateArticle;
 use minipress\admin\actions\categorie\GetFormCreateCategorie;
+use minipress\admin\actions\categorie\GetListCategories;
 use minipress\admin\actions\categorie\PostFormCreateCategorie;
 use minipress\admin\actions\GetHomePageAction;
-use minipress\admin\actions\article\PostFormCreateArticle;
-use minipress\admin\actions\article\GetListArticles;
+
 return function (Slim\App $app): void {
 
     //Page par defaut
@@ -27,9 +30,9 @@ return function (Slim\App $app): void {
     $app->get('/articles[/]', GetListArticles::class)->setName('listArticle');
 
     //Liste des catégories
-    $app->get('/categories[/]', GetListArticles::class)->setName('listCat');
+    $app->get('/categories[/]', GetListCategories::class)->setName('listCat');
 
     //Liste des articles par catégorie
-    $app->get('/categories/{id_cat}/articles[/]', GetListArticles::class)->setName('listArticleByCat');
+    $app->get('/categories/{id_cat}/articles[/]', GetListArticlesByCat::class)->setName('listArticleByCat');
 
 };
