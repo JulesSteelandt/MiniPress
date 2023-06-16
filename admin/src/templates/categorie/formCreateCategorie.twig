@@ -1,7 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Créer un article</h1>
+    <h1>Créer une catégorie</h1>
     <form class="form" action="{{ url_for('CreateCat') }}" method="post" >
         <label for="nom">Nom de la catégorie</label>
         <input type="text" name="nom" id="nom" required>
