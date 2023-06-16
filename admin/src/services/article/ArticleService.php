@@ -22,6 +22,14 @@ class ArticleService {
         return Article::where("categorie_id", $catId)->get()->toArray();
     }
 
+    public static function getArticleSortDateCrea(bool $sort = true){
+        $tri = "asc";
+        if (!$sort) {
+            $tri = "desc";
+        }
+        return Article::orderBy("date_creation", $tri)->get()->toArray();
+    }
+
     public static function createArticle(string $titre, string $resume, string $contenu, int $id_cat){
         $article = new Article();
         $article->titre = $titre;
