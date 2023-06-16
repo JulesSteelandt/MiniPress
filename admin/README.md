@@ -7,7 +7,7 @@
 ## 2 Créer un article en choisissant une catégorie
 ✅ Fonctionnalité fini
 ## 3 Afficher la liste des articles
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 4 Afficher la liste des articles en filtrant par catégorie
 ❌ Fonctionnalité non réalisée
 ## 5 Création d’une catégorie

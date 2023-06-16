@@ -22,6 +22,7 @@ class ArticleService {
         return Article::where("categorie_id", $catId)->get()->toArray();
     }
 
+    //Donne la liste des articles triés par ordre de création, false pour inverser l'ordre
     public static function getArticleSortDateCrea(bool $sort = true){
         $tri = "asc";
         if (!$sort) {
@@ -30,6 +31,7 @@ class ArticleService {
         return Article::orderBy("date_creation", $tri)->get()->toArray();
     }
 
+    //Créer un article
     public static function createArticle(string $titre, string $resume, string $contenu, int $id_cat){
         $article = new Article();
         $article->titre = $titre;

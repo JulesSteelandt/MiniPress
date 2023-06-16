@@ -3,6 +3,7 @@
 namespace minipress\admin\actions\article;
 
 use minipress\admin\actions\AbstractAction;
+use minipress\admin\services\article\ArticleService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
@@ -14,11 +15,10 @@ class GetListArticles extends AbstractAction {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
 
         //On récupère toute la liste des articles par date de création inverse
-
-
+        $articles = ArticleService::getArticleSortDateCrea(false);
 
         //Renvoie la page formCreateCategorie.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/article/formCreateArticle.twig');
+        return $view->render($response, '/article/listArticles.twig',['articles'=>$articles]);
     }
 }
