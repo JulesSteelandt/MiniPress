@@ -3,7 +3,7 @@
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
-use minipress\admin\services\Eloquent\Eloquent;
+use minipress\admin\services\utils\Eloquent;
 
 // crée l'app et le moteur de templates
 $app = AppFactory::create();
