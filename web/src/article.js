@@ -80,27 +80,24 @@ export function afficherArticleCompletSpot(link) {
         .then(response => response.json())
         .then(article => {
             let articleSpot = document.getElementById("article");
-            const titleHTML = new showdown.Converter().makeHtml(article.article.titre);
-            const contentHTML = new showdown.Converter().makeHtml(article.article.contenu);
-
-            const aaa = document.createElement("a");
-            aaa.id = "aaa";
-            aaa.textContent = "Retour";
-            aaa.addEventListener("click", ()=> {
-                console.log("click")
-            })
-
+            articleSpot.innerHTML = "";
+            const titleHTML = document.createElement("p")
+            titleHTML.innerHTML = article.article.titre;
+            const contentHTML = document.createElement("p")
+            contentHTML.innerHTML = article.article.contenu;
             const authorLink = document.createElement("a");
-            authorLink.id = "author";
-            authorLink.textContent = article.article.auteur;
+            fetch(`${API}/api/auteurs/${article.article.auteur}`).then(response => response.json()).then(auteur => {
+                console.log(auteur)
+                authorLink.textContent = auteur.auteur.nom + " " + auteur.auteur.prenom
+            });
+            authorLink.id = article.article.auteur;
             authorLink.href = "#";
             authorLink.addEventListener("click", ()=> {
                 afficherArticlesSpot(getArticleByAuteur(authorLink.textContent));
             })
-            // articleSpot.innerHTML = titleHTML;
+            articleSpot.appendChild(titleHTML)
             articleSpot.appendChild(authorLink);
-            articleSpot.appendChild(aaa);
-            // articleSpot.innerHTML += contentHTML;
+            articleSpot.appendChild(contentHTML);
 
 
         })
