@@ -1,4 +1,4 @@
-import {getArticles, afficherArticlesSpot, filtrerArticlesByTitreOuResume} from "./article.js";
+import {getArticles, afficherArticlesSpot} from "./article.js";
 import {getCategorie, afficherCategoriesSpot} from "./categorie.js";
 
 getArticles()

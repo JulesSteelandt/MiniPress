@@ -58,32 +58,20 @@ export function getArticleByAuteur(auteurId){
 export function afficherArticlesSpot(articles) {
     const articlesSpot = document.querySelector("#articles")
     articlesSpot.innerHTML = "";
+    let articleUl = document.createElement("ul");
 
     articles.articles.forEach(article => {
-
-        let auteurLink = document.createElement("a")
-        auteurLink.href = "";
-        auteurLink.textContent = new showdown.Converter().makeHtml(article.titre);
-        auteurLink.dataset.auteur = article.auteur;
-        auteurLink.addEventListener("click", ()=> {
-            let auteur = auteurLink.dataset.auteur;
-            getArticleByAuteur(auteur)
-                .then(res =>{
-                    afficherArticlesSpot(res)
-                })
-        })
-
-
+        let articleLisr = document.createElement("li");
         let articleLink = document.createElement("a");
         articleLink.href = "#";
-        articleLink.textContent = new showdown.Converter().makeHtml(article.article.titre) + " - " + article.article.date_creation + " par " + article.article.auteur;
+        articleLink.textContent = (article.article.titre) + " - " + article.article.date_creation + " par " + article.article.auteur;
         articleLink.addEventListener("click", ()=> {
             afficherArticleCompletSpot(article.links.self.href);
         });
-
-
-        articlesSpot.appendChild(articleLink);
+        articleLisr.append(articleLink)
+        articleUl.appendChild(articleLisr);
     });
+    articlesSpot.appendChild(articleUl);
 }
 
 export function afficherArticleCompletSpot(link) {
@@ -93,29 +81,9 @@ export function afficherArticleCompletSpot(link) {
         .then(article => {
             console.log(article)
             let articleSpot = document.getElementById("article");
-            articleSpot.innerHTML = "<h1>" + new showdown.Converter().makeHtml(article.article.titre) + "</h1><p>" + new showdown.Converter().makeHtml(article.article.contenu) + "</p>";
+            articleSpot.innerHTML = new showdown.Converter().makeHtml(article.article.titre) + new showdown.Converter().makeHtml(article.article.contenu);
         })
         .catch(error => {
             console.log("Erreur de récupération de données : ", error);
         });
 }
-
-export function trierDatesArticles(articles, ascendant) {
-    articles.sort(function(a, b) {
-        let dateA = new Date(a.date_creation);
-        let dateB = new Date(b.date_creation);
-        return ascendant ? dateA - dateB : dateB - dateA;
-    });
-    afficherArticlesSpot(articles);
-}
-
-export function filtrerArticlesByTitreOuResume(articles, keyword) {
-    let articleFiltre = articles.filter((article) => {
-        let titre = article.titre.toLowerCase().includes(keyword.toLowerCase());
-        let resume = article.resume.toLowerCase().includes(keyword.toLowerCase());
-        return titre || resume;
-    });
-
-    afficherArticlesSpot(articleFiltre);
-}
-
