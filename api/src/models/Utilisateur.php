@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 //Classe Utilisateur correspondant à son équivalent en BD
 class Utilisateur extends Model
 {
-    protected $table = 'utilisateur';
-    protected $primaryKey = 'email';
-    protected $keyType = 'string';
+    protected $table = 'utilisateurs';
+    protected $primaryKey = 'id';
     public $timestamps = true;
 
     //Liaison entre utilisateur et article
