@@ -16,14 +16,20 @@ class UserService
     }
 
     //Créer un utilisateur
-    static function createUser(string $email, string $mdp):bool{
+    static function createUser(string $email, string $mdp){
         $user = new Utilisateur();
         $user->email = $email;
         $user->mot_de_passe= password_hash($mdp,PASSWORD_DEFAULT);
         $user->save();
-        return true;
     }
 
+    static function connexionUser(string $email, string $mdp){
+        $user = Utilisateur::where("email",$email)->first();
+        if (password_verify($mdp,$user->mot_de_passe)){
+            return $user;
+        }
+        return null;
+    }
 
     static function checkPassword($password) : bool
     {

@@ -12,6 +12,7 @@ use minipress\admin\actions\user\GetFormConnexionUser;
 use minipress\admin\actions\user\PostFormConnexionUser;
 use minipress\admin\actions\user\GetFormCreateUser;
 use minipress\admin\actions\user\PostFormCreateUser;
+use minipress\admin\actions\user\DeconnectUserSession;
 
 return function (Slim\App $app): void {
 
@@ -50,5 +51,7 @@ return function (Slim\App $app): void {
 
     //Liste des articles par catégorie
     $app->post('/signUp[/]', PostFormCreateUser::class)->setName('inscription');
+
+    $app->get('/deconnexion[/]', DeconnectUserSession::class)->setName('deconnexion');
 
 };
