@@ -12,9 +12,9 @@ class UtilisateurService {
      * Retrouve un utilisateur avec son id
      *
      * @param int $utilisateurId id de l'utilisateur
-     * @return Utilisateur l'objet représentant l'utilisateur
+     * @return Utilisateur | null l'objet représentant l'utilisateur
      */
-    public static function getUtilisateurById(int $utilisateurId) : Utilisateur {
-        return Utilisateur::find($utilisateurId)->get();
+    public static function getUtilisateurById(int $utilisateurId) : Utilisateur | null {
+        return Utilisateur::where('id', $utilisateurId)->first();
     }
 }
