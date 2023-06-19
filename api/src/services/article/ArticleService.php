@@ -18,10 +18,12 @@ class ArticleService {
     }
 
     //récupère les articles d'une catégorie
-    public static function getArticleByCategorie(int $catId){
+    public static function getArticleByCategorie(int $catId) : array{
         return Article::where("categorie_id", $catId)->get()->toArray();
     }
 
-
-
+    // récupère les articles d'un auteur
+    public static function getArticlesByAuteur(string $authorId) : array {
+        return Article::where('auteur', $authorId)->get()->toArray();
+    }
 }
