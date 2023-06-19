@@ -1,5 +1,5 @@
 import {API} from "./constant.js";
-import {displayCatArticles} from "./article.js";
+import {afficherArticlesSpot, getArticleByCategorieId} from "./article.js";
 
 export function getCategorie(){
     return fetch(`${API}/categories/`)
@@ -15,18 +15,23 @@ export function getCategorie(){
         })
 }
 
-export function afficherCategoriesSpot(categories) {
-    const categoriesSpot = document.getElementById("categories");
+export function afficherCategoriesSpot(cat) {
+    const categoriesSpot = document.querySelector("#categories")
     categoriesSpot.innerHTML = "";
 
-    categories.forEach(function(category) {
+    cat.categories.forEach((category) => {
+        let hCat = document.createElement("h1");
         let categoryLink = document.createElement("a");
         categoryLink.href = "#";
-        categoryLink.textContent = category.name;
+        categoryLink.textContent = category.categorie.nom;
         categoryLink.addEventListener("click", ()=> {
-            displayCatArticles(category.id);
-        });
+            getArticleByCategorieId(category.categorie.id)
+                .then(r =>{
+                    afficherArticlesSpot(r)
+                })
 
-        categoriesSpot.appendChild(categoryLink);
+        });
+        hCat.append(categoryLink)
+        categoriesSpot.appendChild(hCat);
     });
 }

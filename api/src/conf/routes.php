@@ -15,9 +15,9 @@ return function (Slim\App $app): void {
     $app->get('/api/categories/{id}/articles[/]', GetArticleByCategorie::class);
 
     //accéder aux articles
-    $app->get('/api/articles[/]', \minipress\api\actions\GetArticlesAction::class);
+    $app->get('/api/articles[/]', GetArticlesAction::class);
 
     //accéder à un article avec son id
-    $app->get('/api/articles/{id_a}', \minipress\api\actions\GetArticlesByIdAction::class);
+    $app->get('/api/articles/{id_a}', GetArticlesByIdAction::class);
 
 };

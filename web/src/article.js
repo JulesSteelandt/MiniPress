@@ -2,6 +2,7 @@ import {API} from "./constant.js";
 
 
 export function getArticles(){
+
     return fetch(`${API}/articles/`)
         .then(r => {
             if (r.ok){
@@ -58,11 +59,11 @@ export function afficherArticlesSpot(articles) {
     const articlesSpot = document.querySelector("#articles")
     articlesSpot.innerHTML = "";
 
-    articles.forEach(article => {
+    articles.articles.forEach(article => {
 
         let auteurLink = document.createElement("a")
-        auteurLink.href = "#";
-        auteurLink.textContent = article.auteur;
+        auteurLink.href = "";
+        auteurLink.textContent = new showdown.Converter().makeHtml(article.titre);
         auteurLink.dataset.auteur = article.auteur;
         auteurLink.addEventListener("click", ()=> {
             let auteur = auteurLink.dataset.auteur;
@@ -75,9 +76,9 @@ export function afficherArticlesSpot(articles) {
 
         let articleLink = document.createElement("a");
         articleLink.href = "#";
-        articleLink.textContent = article.titre + " - " + article.date_creation + " par " + auteurLink;
+        articleLink.textContent = new showdown.Converter().makeHtml(article.article.titre) + " - " + article.article.date_creation + " par " + article.article.auteur;
         articleLink.addEventListener("click", ()=> {
-            afficherArticleCompletSpot(article.id);
+            afficherArticleCompletSpot(article.links.self.href);
         });
 
 
@@ -85,25 +86,17 @@ export function afficherArticlesSpot(articles) {
     });
 }
 
-export function afficherArticleCompletSpot(articleId) {
-    fetch(`${API}/articles/${articleId}`)
+export function afficherArticleCompletSpot(link) {
+    let apilink = link.replace("/api", "")
+    fetch(API+apilink)
         .then(response => response.json())
         .then(article => {
+            console.log(article)
             let articleSpot = document.getElementById("article");
-            articleSpot.innerHTML = "<h1>" + article.title + "</h1><p>" + article.content + "</p>";
+            articleSpot.innerHTML = "<h1>" + new showdown.Converter().makeHtml(article.article.titre) + "</h1><p>" + new showdown.Converter().makeHtml(article.article.contenu) + "</p>";
         })
         .catch(error => {
-            console.log("Erreur de récupération de données : ", error.messageerror);
-        });
-}
-export function displayCatArticles(categoryId) {
-    fetch("/api/categories/" + categoryId + "/articles")
-        .then(response => response.json())
-        .then(articles => {
-            afficherArticlesSpot(articles);
-        })
-        .catch(error => {
-            console.log("Erreur de récupération de données : ", error.messageerror);
+            console.log("Erreur de récupération de données : ", error);
         });
 }
 
