@@ -8,15 +8,13 @@
 ✅ Fonctionnalité réalisée
 ## 3 Affichage de la liste des articles d’une catégorie, en cliquant sur la catégorie
 ✅ Fonctionnalité réalisée
-## 4 Afficher la liste des articles en filtrant par catégorie
-❌ Fonctionnalité non réalisée
-## 5 Affichage complet d’un article en cliquant sur un article dans une liste
+## 4 Affichage complet d’un article en cliquant sur un article dans une liste
 ✅ Fonctionnalité réalisée
-## 6 Affichage de la liste des articles d’un auteur en cliquant sur son nom
+## 5 Affichage de la liste des articles d’un auteur en cliquant sur son nom
 ❌ Fonctionnalité non réalisée
-## 7 Tri des listes d’articles selon l’ordre ascendant ou descendant de la date de création
+## 6 Tri des listes d’articles selon l’ordre ascendant ou descendant de la date de création
 ❌ Fonctionnalité non réalisée
-## 8 Filtrage des listes d’articles selon un mot clé dans le titre
+## 7 Filtrage des listes d’articles selon un mot clé dans le titre
 ❌ Fonctionnalité non réalisée
-## 9 Filtrage des listes d’articles selon un mot clé dans le titre ou dans le résumé
+## 8 Filtrage des listes d’articles selon un mot clé dans le titre ou dans le résumé
 ❌ Fonctionnalité non réalisée

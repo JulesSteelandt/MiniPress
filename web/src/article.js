@@ -79,9 +79,30 @@ export function afficherArticleCompletSpot(link) {
     fetch(API+apilink)
         .then(response => response.json())
         .then(article => {
-            console.log(article)
             let articleSpot = document.getElementById("article");
-            articleSpot.innerHTML = new showdown.Converter().makeHtml(article.article.titre) + new showdown.Converter().makeHtml(article.article.contenu);
+            const titleHTML = new showdown.Converter().makeHtml(article.article.titre);
+            const contentHTML = new showdown.Converter().makeHtml(article.article.contenu);
+
+            const aaa = document.createElement("a");
+            aaa.id = "aaa";
+            aaa.textContent = "Retour";
+            aaa.addEventListener("click", ()=> {
+                console.log("click")
+            })
+
+            const authorLink = document.createElement("a");
+            authorLink.id = "author";
+            authorLink.textContent = article.article.auteur;
+            authorLink.href = "#";
+            authorLink.addEventListener("click", ()=> {
+                afficherArticlesSpot(getArticleByAuteur(authorLink.textContent));
+            })
+            // articleSpot.innerHTML = titleHTML;
+            articleSpot.appendChild(authorLink);
+            articleSpot.appendChild(aaa);
+            // articleSpot.innerHTML += contentHTML;
+
+
         })
         .catch(error => {
             console.log("Erreur de récupération de données : ", error);
