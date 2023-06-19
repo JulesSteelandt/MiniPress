@@ -15,6 +15,6 @@ class UtilisateurService {
      * @return Utilisateur l'objet représentant l'utilisateur
      */
     public static function getUtilisateurById(int $utilisateurId) : Utilisateur {
-        return Utilisateur::find($utilisateurId)->first();
+        return Utilisateur::find($utilisateurId)->get();
     }
 }
