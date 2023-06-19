@@ -26,6 +26,6 @@ class PostFormConnexionUser extends AbstractAction {
 
         //Renvoie la page formCreateCategorie.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/categorie/formCreateCategorie.twig',['csrf' => $csrf['token']]);
+        return $view->render($response, '/user/userConnected.twig');
     }
 }

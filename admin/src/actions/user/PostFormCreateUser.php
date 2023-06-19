@@ -3,8 +3,10 @@
 namespace minipress\admin\actions\user;
 
 use minipress\admin\actions\AbstractAction;
-use minipress\admin\services\categorie\CategorieService;
+use minipress\admin\models\Utilisateur;
+use minipress\admin\services\utilisateur\UserService;
 use minipress\admin\services\utils\CsrfService;
+use PhpParser\Error;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
@@ -19,17 +21,31 @@ class PostFormCreateUser extends AbstractAction {
         //Recupère les valeurs du form
         $params = $request->getParsedBody();
 
-        $nom = $params['nom'];
+        $email = $params['email'];
+        $mdp = $params['mdp'];
+        $mdpVerif = $params['mdpVerif'];
         $csrf = $params['csrf'];
 
         //Verifie le token
         CsrfService::check($csrf);
 
+        if (!UserService::emailUserVerif($email)){
+            throw new Error("email existe deja rip");
+        }
+
+        if ($mdp!=$mdpVerif){
+            throw new Error("mdp pas identique rip");
+        }
+
+        if (!UserService::checkPassword($mdp)){
+            throw new Error("Mot de passe pas correct frr");
+        }
+
         //Insertion en base de donnée
-        CategorieService::createCategorie($nom);
+        UserService::createUser($email,$mdp);
 
         //Renvoie la page formCreateCategorie.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/categorie/categorieCreated.twig');
+        return $view->render($response, '/user/userCreated.twig');
     }
 }
