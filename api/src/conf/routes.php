@@ -5,6 +5,7 @@ use minipress\api\actions\GetArticlesAction;
 use minipress\api\actions\GetArticlesByAuteurAction;
 use minipress\api\actions\GetArticlesByIdAction;
 use minipress\api\actions\GetCategorie;
+use \minipress\api\actions\GetAuteurAction;
 
 return function (Slim\App $app): void {
     //Accéder aux catégories
@@ -21,4 +22,7 @@ return function (Slim\App $app): void {
 
     // accéder aux articles d'un auteur
     $app->get('/api/auteurs/{id}/articles[/]', GetArticlesByAuteurAction::class);
+
+    // accéder à l'auteur via une id
+    $app->get('/api/auteurs/{id}[/]', GetAuteurAction::class);
 };

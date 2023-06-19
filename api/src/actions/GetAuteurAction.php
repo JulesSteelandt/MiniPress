@@ -2,11 +2,12 @@
 
 namespace minipress\api\actions;
 
+use minipress\api\services\article\ArticleService;
+use minipress\api\services\utilisateur\UtilisateurService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use minipress\api\services\article\ArticleService;
 
-class GetArticlesAction extends AbstractAction
+class GetAuteurAction extends AbstractAction
 {
 
     // méthode invoquée automatiquement à la création de la page
@@ -14,28 +15,24 @@ class GetArticlesAction extends AbstractAction
     {
 
         //Récupère les articles
-        $articles = ArticleService::getArticle();
+        $user = UtilisateurService::getUserById($args['id']);
 
         //tableau contenant les informations voulues
         $data = [
             'type' => 'collection',
-            'count' => count($articles),
         ];
-        foreach ($articles as $article) {
-            $data['articles'][] = [
-                'article' => [
-                    'titre' => $article['titre'],
-                    'date_creation' => $article['date_creation'],
-                    'auteur' => $article['auteur'],
+            $data['user'] = [
+                'user' => [
+                    'id' => $user['id'],
+                    'nom' => $user['nom'],
+                    'prenom' => $user['prenom'],
                 ],
                 'links' => [
                     'self' => [
-                        'href' => '/api/articles/'.$article['id'],
-                        'auteur' => '/api/auteurs/'.$article['auteur'],
+                        'href' => '/api/auteurs/'.$user['id']."/articles",
                     ],
                 ],
             ];
-        }
 
 
         // les envois sous format json
