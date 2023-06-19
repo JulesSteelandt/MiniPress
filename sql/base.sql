@@ -12,7 +12,8 @@ CREATE TABLE utilisateur
     email            VARCHAR(255),
     mot_de_passe     VARCHAR(255),
     nom              VARCHAR(255),
-    prenom           VARCHAR(255)
+    prenom           VARCHAR(255),
+    statut           int(3)
 );
 
 -- Table "article"
@@ -31,9 +32,9 @@ CREATE TABLE article
     FOREIGN KEY (auteur) REFERENCES utilisateur (id)
 );
 
-INSERT INTO utilisateur values (1, 'user1@mail.com','$2y$10$wpmkRKMEvVmFLDWZcENR4et2vz8v9gjm4hQT8VB5TV6cGuIlBLzMG','user1','leGoat');
-INSERT INTO utilisateur values (2, 'user2@mail.com','$2y$10$3c/O.sP/rpT/A5zxgDQBZuL5Vpo6MyH0IUnoWo1Bjpvxb/XqCEGgq','user2','Magic');
-INSERT INTO utilisateur values (3, 'maxime.bg@mail.com','$2y$10$6LDVQwJAYFXWqkTrKSMkK.rs3G30qVScIAgnCuXQsCw6Po515j/9K','Maxime','Biaggi');
+INSERT INTO utilisateur values (1, 'user1@mail.com','$2y$10$wpmkRKMEvVmFLDWZcENR4et2vz8v9gjm4hQT8VB5TV6cGuIlBLzMG','user1','leGoat', 2);
+INSERT INTO utilisateur values (2, 'user2@mail.com','$2y$10$3c/O.sP/rpT/A5zxgDQBZuL5Vpo6MyH0IUnoWo1Bjpvxb/XqCEGgq','user2','Magic', 1);
+INSERT INTO utilisateur values (3, 'maxime.bg@mail.com','$2y$10$6LDVQwJAYFXWqkTrKSMkK.rs3G30qVScIAgnCuXQsCw6Po515j/9K','Maxime','Biaggi', 1);
 
 INSERT INTO categorie values (1,'Sport');
 INSERT INTO categorie values (2,'Jeux vidéo');
