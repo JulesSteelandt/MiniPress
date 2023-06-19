@@ -1,13 +1,12 @@
 <?php
 
-use minipress\api\actions\GetArticlesByIdAction;
-use minipress\api\actions\GetArticlesAction;
-use minipress\api\actions\GetCategorie;
 use minipress\api\actions\GetArticleByCategorie;
+use minipress\api\actions\GetArticlesAction;
+use minipress\api\actions\GetArticlesByAuteurAction;
+use minipress\api\actions\GetArticlesByIdAction;
+use minipress\api\actions\GetCategorie;
 
 return function (Slim\App $app): void {
-
-
     //Accéder aux catégories
     $app->get('/api/categories[/]', GetCategorie::class);
 
@@ -20,4 +19,6 @@ return function (Slim\App $app): void {
     //accéder à un article avec son id
     $app->get('/api/articles/{id_a}', GetArticlesByIdAction::class);
 
+    // accéder aux articles d'un auteur
+    $app->get('/api/auteurs/{id}/articles[/]', GetArticlesByAuteurAction::class);
 };
