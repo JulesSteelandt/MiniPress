@@ -10,7 +10,7 @@ class Utilisateur extends Model
 {
     protected $table = 'utilisateur';
     protected $primaryKey = 'id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     //Liaison entre utilisateur et article
     public function article() : hasMany

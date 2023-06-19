@@ -31,6 +31,7 @@ class GetArticlesAction extends AbstractAction
                 'links' => [
                     'self' => [
                         'href' => '/api/articles/'.$article['id'],
+                        'auteur' => '/api/auteurs/'.$article['auteur'],
                     ],
                 ],
             ];

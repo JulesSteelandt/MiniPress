@@ -21,7 +21,7 @@ class GetArticlesByIdAction extends AbstractAction
         $data = [
             'type' => 'collection',
         ];
-            $data['articles'][] = [
+            $data = [
                 'article' => [
                     'id' => $article['id'],
                     'titre' => $article['titre'],

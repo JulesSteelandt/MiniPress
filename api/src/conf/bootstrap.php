@@ -2,17 +2,23 @@
 
 use Slim\Factory\AppFactory;
 use minipress\api\services\Eloquent\Eloquent;
-// crée l'app et le moteur de templates
+
+// Crée l'app et le moteur de templates
 $app = AppFactory::create();
 
-// ajoute le routing et l'erreur middleware
+// Ajoute le routing middleware
 $app->addRoutingMiddleware();
+
+// Ajoute le middleware d'erreurs
 $app->addErrorMiddleware(true, false, false);
+
+// Définit le chemin de base
 $app->setBasePath('');
 
-// initialise Eloquent avec le fichier de config
+// Initialise Eloquent avec le fichier de configuration
 Eloquent::init(__DIR__ . '/../conf/api.conf.ini');
 
+// Initialise la session
 session_start();
 
 return $app;

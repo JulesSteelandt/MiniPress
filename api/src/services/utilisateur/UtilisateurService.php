@@ -17,4 +17,10 @@ class UtilisateurService {
     public static function getUtilisateurById(int $utilisateurId) : Utilisateur | null {
         return Utilisateur::where('id', $utilisateurId)->first();
     }
+
+
+    //récupère tous les articles
+    public static function getUserById($id): array {
+        return Utilisateur::where("id", $id)->first()->toArray();
+    }
 }
