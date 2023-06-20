@@ -4,6 +4,10 @@
     {% if userAdmin %}
     <h1>Inscription</h1>
     <form class="form" action="{{ url_for('inscription') }}" method="post" >
+        <label for="nom">Nom</label>
+        <input type="text" name="nom" id="nom" required>
+        <label for="prenom">Prenom</label>
+        <input type="text" name="prenom" id="prenom" required>
         <label for="email">Email</label>
         <input type="text" name="email" id="email" required>
         <label for="mdp">Mot de passe</label>

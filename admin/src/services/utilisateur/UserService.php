@@ -16,10 +16,12 @@ class UserService
     }
 
     //Créer un utilisateur
-    static function createUser(string $email, string $mdp){
+    static function createUser(string $email, string $mdp, string $nom, string $prenom){
         $user = new Utilisateur();
         $user->email = $email;
-        $user->mot_de_passe= password_hash($mdp,PASSWORD_DEFAULT);
+        $user->mot_de_passe = password_hash($mdp,PASSWORD_DEFAULT);
+        $user->nom = $nom;
+        $user->prenom = $prenom;
         $user->statut = 1;
         $user->save();
     }
