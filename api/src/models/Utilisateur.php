@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Utilisateur extends Model
 {
     protected $table = 'utilisateur';
-    protected $primaryKey = 'email';
-    protected $keyType = 'string';
+    protected $primaryKey = 'id';
     public $timestamps = true;
 
     //Liaison entre utilisateur et article

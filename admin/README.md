@@ -27,7 +27,7 @@
 ## 12 Api : article complet
 ✅ Fonctionnalité fini
 ## 13 Api : liste des articles d’un auteur
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité finie
 ## 14 Publication/dépublication des articles
 ❌ Fonctionnalité non réalisée
 ## 15 Création d’utilisateurs
