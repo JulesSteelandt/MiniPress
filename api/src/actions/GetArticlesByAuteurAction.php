@@ -4,6 +4,7 @@ namespace minipress\api\actions;
 
 use minipress\api\services\article\ArticleService;
 use minipress\api\services\auteur\AuteurService;
+use minipress\api\services\utilisateur\UtilisateurService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -14,13 +15,21 @@ class GetArticlesByAuteurAction extends AbstractAction {
 
     // méthode magique invoquée quand l'action est demandée
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
-        //Récupère un article selon son id donné dans l'URL
+        // récupère l'auteur et ses articles
+        $auteur = UtilisateurService::getUtilisateurById($args['id']);
         $articles = ArticleService::getArticlesByAuteur($args['id']);
 
         //tableau contenant les informations voulues
         $data = [
-            'type' => 'collection',
-            'count' => count($articles),
+            'author' => [
+                'id' => $auteur->id,
+                'lastname' => $auteur->nom,
+                'firstname' => $auteur->prenom
+            ],
+            'articles' => [
+                'type' => 'collection',
+                'count' => count($articles),
+            ]
         ];
 
         // parcours les articles et inscrit le lien

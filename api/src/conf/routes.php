@@ -5,7 +5,7 @@ use minipress\api\actions\GetArticlesAction;
 use minipress\api\actions\GetArticlesByAuteurAction;
 use minipress\api\actions\GetArticlesByIdAction;
 use minipress\api\actions\GetCategorie;
-use \minipress\api\actions\GetAuteurAction;
+use minipress\api\actions\GetAuteurAction;
 
 return function (Slim\App $app): void {
     //Accéder aux catégories

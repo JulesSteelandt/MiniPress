@@ -23,7 +23,7 @@ class ArticleService {
     }
 
     // récupère les articles d'un auteur
-    public static function getArticlesByAuteur(string $authorId) : array {
+    public static function getArticlesByAuteur(int $authorId) : array {
         return Article::where('auteur', $authorId)->get()->toArray();
     }
 }
