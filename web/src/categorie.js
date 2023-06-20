@@ -22,6 +22,7 @@ export function afficherCategoriesSpot(cat) {
         let hCat = document.createElement("h1");
         let categoryLink = document.createElement("a");
         categoryLink.href = "#";
+        categoryLink.classList.add("cat");
         categoryLink.textContent = category.categorie.nom;
         categoryLink.addEventListener("click", ()=> {
             getArticleByCategorieId(category.categorie.id)

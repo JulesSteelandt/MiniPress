@@ -90,7 +90,7 @@ export function afficherArticlesSpot(articles) {
     let articleUl = document.createElement("ul");
 
     console.log(articles)
-    for (let i = articles.articles.length - 1; i >= 0; i--) {
+    for (let i = articles.articles.count - 1; i >= 0; i--) {
         let article = articles.articles[i];
         let articleLisr = document.createElement("li");
         let articleLink = document.createElement("a");
@@ -127,6 +127,7 @@ export function afficherArticleCompletSpot(link) {
                 authorLink.setAttribute("id", auteur.user.user.id)
                 authorLink.textContent = auteur.user.user.nom + " " + auteur.user.user.prenom
             });
+            articleSpot = document.getElementById("articles");
             authorLink.id = article.article.auteur;
             console.log(article.article.auteur)
             authorLink.href = "#";
