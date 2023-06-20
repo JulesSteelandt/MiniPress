@@ -11,36 +11,43 @@ use Psr\Http\Message\ServerRequestInterface;
 /**
  * Affiche les articles d'un auteur
  */
-class GetArticlesByAuteurAction extends AbstractAction {
+class GetArticlesByAuteurAction extends AbstractAction
+{
 
     // méthode magique invoquée quand l'action est demandée
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
+    {
         // récupère l'auteur et ses articles
         $auteur = UtilisateurService::getUtilisateurById($args['id']);
         $articles = ArticleService::getArticlesByAuteur($args['id']);
 
-        //tableau contenant les informations voulues
-        $data = [
-            'auteur' => [
-                'id' => $auteur->id,
-                'nom' => $auteur->nom,
-                'prenom' => $auteur->prenom
-            ],
-            'articles' => [
-                'type' => 'collection',
-                'count' => count($articles),
-            ]
-        ];
-
-        // parcours les articles et inscrit le lien
-        foreach ($articles as $article){
-            $data['articles'][] = [
-                'link' => [
-                    'self' => [
-                        'href' => '/api/articles/' . $article['id'] . '/',
-                    ],
+        if ($auteur != null) {
+            //tableau contenant les informations voulues
+            $data = [
+                'auteur' => [
+                    'id' => $auteur->id,
+                    'nom' => $auteur->nom,
+                    'prenom' => $auteur->prenom
                 ],
+                'articles' => [
+                    'type' => 'collection',
+                    'count' => count($articles),
+                ]
             ];
+
+            // parcours les articles et inscrit le lien
+            foreach ($articles as $article) {
+                $data['articles'][] = [
+                    'link' => [
+                        'self' => [
+                            'href' => '/api/articles/' . $article['id'] . '/',
+                        ],
+                    ],
+                ];
+            }
+        } else {
+            $data = [
+                'auteur' => 'null'];
         }
 
         // écrit les données dans la réponse

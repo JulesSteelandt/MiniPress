@@ -13,8 +13,10 @@ class CategorieService
         return Categorie::all()->toArray();
     }
 
-    public static function getCategorieById(int $id){
-        return Categorie::find($id)->toArray();
+    public static function getCategorieById(int $id) : ?array {
+        $cat = Categorie::find($id);
+        if ($cat!=null) return $cat->toArray();
+        return null;
     }
 
 }
