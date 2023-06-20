@@ -1,12 +1,15 @@
 // classe définissant les articles
+import 'package:mobile/models/categorie.dart';
+import 'package:mobile/models/utilisateur.dart';
+
 class Article {
   final int id;
   final String titre;
   final String resume;
   final String contenu;
   final DateTime dateCreation;
-  String categorie;
-  String auteur;
+  Categorie? categorie;
+  Utilisateur? auteur;
   String image;
 
   // constructeur qui initialise tout sauf l'auteur, l'image et la catégorie
@@ -16,13 +19,13 @@ class Article {
     required this.resume,
     required this.contenu,
     required this.dateCreation,
-    this.auteur = "",
+    this.auteur,
     this.image = "",
-    this.categorie = ""
+    this.categorie
   });
 
   // change l'auteur
-  void setAuteur(String nom){
+  void setAuteur(Utilisateur nom){
     auteur = nom;
   }
 
@@ -32,7 +35,7 @@ class Article {
   }
 
   // change la catégorie
-  void setCategorie(String nomCategorie){
+  void setCategorie(Categorie nomCategorie){
     categorie = nomCategorie;
   }
 
