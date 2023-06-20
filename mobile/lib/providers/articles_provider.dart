@@ -22,10 +22,9 @@ class ArticlesProvider extends ChangeNotifier {
       final articleResponse = await http.get(Uri.parse(AppUtils.apiUrl + articleLink));
       final articleJson = jsonDecode(articleResponse.body);
 
-      _allArticles.insert(0, Article.fromJson(articleJson));
+      _allArticles.insert(0, Article.fromJson(articleJson['article']));
     }
 
-    print(_allArticles);
     notifyListeners();
   }
 }
