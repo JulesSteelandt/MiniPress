@@ -1,5 +1,7 @@
-import {getArticles, afficherArticlesSpot} from "./article.js";
+import {getArticles, afficherArticlesSpot, getScreenArticle, afficherArticleTableau} from "./article.js";
 import {getCategorie, afficherCategoriesSpot} from "./categorie.js";
+
+let boo = true;
 
 getArticles()
     .then(res =>{
@@ -14,6 +16,7 @@ getCategorie()
         afficherCategoriesSpot(res)
     })
 
-document.querySelector("#filtrage").addEventListener("keyup", () => {
-    filtrerArticlesByTitreOuResume(document.querySelector("#filtrage").textContent)
+document.querySelector("#sens").addEventListener("click", () => {
+    boo = !boo;
+    afficherArticleTableau(getScreenArticle(), boo)
 })
