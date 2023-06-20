@@ -1,6 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+    {% if userAdmin %}
     <h1>Inscription</h1>
     <form class="form" action="{{ url_for('inscription') }}" method="post" >
         <label for="email">Email</label>
@@ -12,4 +13,9 @@
         <input type="hidden" name="csrf" value="{{ csrf }}">
         <input type="submit" value="Créer" class="submit">
     </form>
+    {% else %}
+        <h1> Vous n'êtes pas admin</h1>
+    {% endif %}
+
+
 {% endblock %}

@@ -20,13 +20,16 @@ class UserService
         $user = new Utilisateur();
         $user->email = $email;
         $user->mot_de_passe= password_hash($mdp,PASSWORD_DEFAULT);
+        $user->statut = 1;
         $user->save();
     }
 
     static function connexionUser(string $email, string $mdp){
         $user = Utilisateur::where("email",$email)->first();
-        if (password_verify($mdp,$user->mot_de_passe)){
-            return $user;
+        if ($user!=null) {
+            if (password_verify($mdp, $user->mot_de_passe)) {
+                return $user;
+            }
         }
         return null;
     }

@@ -1,6 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+    {% if userLog %}
     <h1>Créer un article</h1>
     <form class="form" action="{{ url_for('CreateArticle') }}" method="post" >
         <label for="titre">titre</label>
@@ -19,4 +20,6 @@
         <input type="hidden" name="csrf" value="{{ csrf }}">
         <input type="submit" value="Créer" class="submit">
     </form>
+    {% else %}
+    <h1> Vous n'êtes pas connecté </h1>
 {% endblock %}

@@ -11,7 +11,9 @@ session_start();
 $app = AppFactory::create();
 // crée le moteur de templates twig
 $twig = Twig::create(__DIR__ . '/../templates', ['cache' => false]);
+
 $twig->getEnvironment()->addGlobal("userLog",$_SESSION['user']!=null);
+$twig->getEnvironment()->addGlobal("userAdmin",($_SESSION['user']!=null && $_SESSION['user']->statut==2));
 
 // ajoute le routing et l'erreur middleware
 $app->addRoutingMiddleware();
