@@ -43,6 +43,7 @@ class ArticleService {
         $article->contenu = $contenu;
         $article->categorie_id = $id_cat;
         $article->date_creation = date("Y-m-d H:i:s");
+        $article->auteur = $_SESSION['user']->id;
         $article->save();
     }
 
