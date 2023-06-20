@@ -118,9 +118,9 @@ export function afficherArticleCompletSpot(link) {
             let articleSpot = document.getElementById("article");
             articleSpot.innerHTML = "";
             const titleHTML = document.createElement("p")
-            titleHTML.innerHTML = article.article.titre;
+            titleHTML.innerHTML = new showdown.Converter().makeHtml(article.article.titre);
             const contentHTML = document.createElement("p")
-            contentHTML.innerHTML = article.article.contenu;
+            contentHTML.innerHTML = new showdown.Converter().makeHtml(article.article.contenu);
             const authorLink = document.createElement("a");
             console.log(`${API}/auteurs/${article.article.auteur}`)
             fetch(`${API}/auteurs/${article.article.auteur}`).then(response => response.json()).then(auteur => {
