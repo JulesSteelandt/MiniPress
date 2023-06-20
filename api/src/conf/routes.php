@@ -18,7 +18,7 @@ return function (Slim\App $app): void {
     $app->get('/api/articles[/]', GetArticlesAction::class);
 
     //accéder à un article avec son id
-    $app->get('/api/articles/{id_a}', GetArticlesByIdAction::class);
+    $app->get('/api/articles/{id_a}[/]', GetArticlesByIdAction::class);
 
     // accéder aux articles d'un auteur
     $app->get('/api/auteurs/{id}/articles[/]', GetArticlesByAuteurAction::class);
