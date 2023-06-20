@@ -21,10 +21,10 @@ class GetArticlesByAuteurAction extends AbstractAction {
 
         //tableau contenant les informations voulues
         $data = [
-            'author' => [
+            'auteur' => [
                 'id' => $auteur->id,
-                'lastname' => $auteur->nom,
-                'firstname' => $auteur->prenom
+                'nom' => $auteur->nom,
+                'prenom' => $auteur->prenom
             ],
             'articles' => [
                 'type' => 'collection',

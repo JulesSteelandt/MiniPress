@@ -3,6 +3,7 @@
 namespace minipress\api\actions;
 
 use minipress\api\services\article\ArticleService;
+use minipress\api\services\categorie\CategorieService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -13,12 +14,19 @@ class GetArticleByCategorie extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         //Retourne les articles d'une catégorie
+        $categorie = CategorieService::getCategorieById($args['id']);
         $articles = ArticleService::getArticleByCategorie($args['id']);
 
         //tableau contenant les informations voulues
         $data = [
-            'type' => 'collection',
-            'count' => count($articles),
+            'categorie' => [
+                'id' => $categorie['id'],
+                'nom' => $categorie['nom']
+            ],
+            'articles' => [
+                'type' => 'collection',
+                'count' => count($articles),
+            ]
         ];
         foreach ($articles as $art) {
             $data['articles'][] = [
@@ -29,11 +37,13 @@ class GetArticleByCategorie extends AbstractAction
                 ],
                 'links' => [
                     'self' => [
-                        'href' => '/api/articles/'.$art['id'],
+                        'href' => '/api/articles/' . $art['id'],
                     ],
                 ],
             ];
         }
+
+
 
         // les envois sous format json
         $response->getBody()->write(json_encode($data));
