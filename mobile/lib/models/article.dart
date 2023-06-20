@@ -46,7 +46,7 @@ class Article {
       titre: json['titre'],
       resume: json['resume'],
       contenu: json['contenu'],
-      dateCreation: json['date_creation']
+      dateCreation: DateTime.parse(json['date_creation'])
     );
   }
 }
