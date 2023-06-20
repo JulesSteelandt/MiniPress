@@ -56,11 +56,14 @@ export function getArticleByAuteur(auteurId){
 
 
 export function afficherArticlesSpot(articles) {
+    let tab = [];
     const articlesSpot = document.querySelector("#articles")
     articlesSpot.innerHTML = "";
     let articleUl = document.createElement("ul");
 
-    articles.articles.forEach(article => {
+    console.log(articles)
+    for (let i = articles.articles.length - 1; i >= 0; i--) {
+        let article = articles.articles[i];
         let articleLisr = document.createElement("li");
         let articleLink = document.createElement("a");
         articleLink.href = "#";
@@ -70,7 +73,7 @@ export function afficherArticlesSpot(articles) {
         });
         articleLisr.append(articleLink)
         articleUl.appendChild(articleLisr);
-    });
+    }
     articlesSpot.appendChild(articleUl);
 }
 
