@@ -18,7 +18,6 @@ export function getCategorie(){
 export function afficherCategoriesSpot(cat) {
     const categoriesSpot = document.querySelector("#categories")
     categoriesSpot.innerHTML = "";
-
     cat.categories.forEach((category) => {
         let hCat = document.createElement("h1");
         let categoryLink = document.createElement("a");
@@ -27,6 +26,7 @@ export function afficherCategoriesSpot(cat) {
         categoryLink.addEventListener("click", ()=> {
             getArticleByCategorieId(category.categorie.id)
                 .then(r =>{
+                    document.querySelector("#article").innerHTML = "";
                     afficherArticlesSpot(r)
                 })
 
