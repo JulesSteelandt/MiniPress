@@ -90,7 +90,7 @@ export function afficherArticlesSpot(articles) {
     let articleUl = document.createElement("ul");
 
     console.log(articles)
-    for (let i = articles.articles.length - 1; i >= 0; i--) {
+    for (let i = articles.articles.count - 1; i >= 0; i--) {
         let article = articles.articles[i];
         let articleLisr = document.createElement("li");
         let articleLink = document.createElement("a");
