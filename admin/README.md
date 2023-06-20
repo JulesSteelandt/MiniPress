@@ -13,9 +13,9 @@
 ## 5 Création d’une catégorie
 ✅ Fonctionnalité fini
 ## 6 Formulaire d’authentification
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 7 Contrôle d’accès
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 8 Auteurs
 ❌ Fonctionnalité non réalisée
 ## 9 Api : liste des catégories
@@ -31,6 +31,6 @@
 ## 14 Publication/dépublication des articles
 ❌ Fonctionnalité non réalisée
 ## 15 Création d’utilisateurs
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité fini
 ## 16 Tri de la liste d’articles dans l’api
 ❌ Fonctionnalité non réalisée
