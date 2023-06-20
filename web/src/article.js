@@ -1,5 +1,35 @@
 import {API} from "./constant.js";
 
+export function getScreenArticle(){
+    //Récupérer les articles existant déjà dans la balise et les placer dans un tableau
+    let articles = document.querySelectorAll("#articles li");
+    let tab = [];
+    for (let i = 0; i < articles.length; i++) {
+        tab.push(articles[i]);
+    }
+    return tab;
+}
+
+export function afficherArticleTableau(tab, ascendant){
+    //Trier le tableau en fonction de l'ordre choisi
+    if (ascendant){
+        tab.sort((a, b) => {
+            return a.textContent.localeCompare(b.textContent)
+        })
+    } else {
+        tab.sort((a, b) => {
+            return b.textContent.localeCompare(a.textContent)
+        })
+    }
+    //Afficher le tableau trié
+    let articleUl = document.createElement("ul");
+    for (let i = 0; i < tab.length; i++) {
+        articleUl.appendChild(tab[i]);
+    }
+    let articlesSpot = document.querySelector("#articles");
+    articlesSpot.innerHTML = "";
+    articlesSpot.appendChild(articleUl);
+}
 export function getArticles(){
 
     return fetch(`${API}/articles/`)
@@ -55,7 +85,6 @@ export function getArticleByAuteur(auteurId){
 
 
 export function afficherArticlesSpot(articles) {
-    let tab = [];
     const articlesSpot = document.querySelector("#articles")
     articlesSpot.innerHTML = "";
     let articleUl = document.createElement("ul");
@@ -89,9 +118,9 @@ export function afficherArticleCompletSpot(link) {
             let articleSpot = document.getElementById("article");
             articleSpot.innerHTML = "";
             const titleHTML = document.createElement("p")
-            titleHTML.innerHTML = article.article.titre;
+            titleHTML.innerHTML = new showdown.Converter().makeHtml(article.article.titre);
             const contentHTML = document.createElement("p")
-            contentHTML.innerHTML = article.article.contenu;
+            contentHTML.innerHTML = new showdown.Converter().makeHtml(article.article.contenu);
             const authorLink = document.createElement("a");
             console.log(`${API}/auteurs/${article.article.auteur}`)
             fetch(`${API}/auteurs/${article.article.auteur}`).then(response => response.json()).then(auteur => {
@@ -99,6 +128,7 @@ export function afficherArticleCompletSpot(link) {
                 authorLink.textContent = auteur.user.user.nom + " " + auteur.user.user.prenom
             });
             authorLink.id = article.article.auteur;
+            console.log(article.article.auteur)
             authorLink.href = "#";
             authorLink.addEventListener("click", ()=> {
                 let baliseUl = document.createElement("ul");
@@ -108,7 +138,10 @@ export function afficherArticleCompletSpot(link) {
                         const articlesSpot = document.querySelector("#articles")
                         articlesSpot.innerHTML = "";
                         let aut = "";
-                        res.articles.forEach(article => {
+                        console.log(res)
+                        // res.articles.forEach(article => {
+                        for (let i = 0; i < res.articles.count; i++) {
+                            const article = res.articles[i];
                             let link = article.link.self.href.replace("/api", "");
                             console.log(API+link)
                             fetch(API+link)
@@ -132,7 +165,7 @@ export function afficherArticleCompletSpot(link) {
                                     articleSpot.appendChild(titre);
                                     articleSpot.appendChild(baliseUl);
                                 })
-                        })
+                        }
                     })
                 // afficherArticlesSpot(getArticleByAuteur(authorLink.getAttribute("id")));
             })
