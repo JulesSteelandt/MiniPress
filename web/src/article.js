@@ -74,7 +74,7 @@ export function getArticleByCategorieId(id){
 }
 
 export function getArticleByAuteur(auteurId){
-    return fetch(`${API}/api/auteurs/${auteurId}/articles`)
+    return fetch(`${API}/auteurs/${auteurId}/articles`)
         .then(response => {
             return response.json()
         })
@@ -128,6 +128,7 @@ export function afficherArticleCompletSpot(link) {
                 authorLink.textContent = auteur.user.user.nom + " " + auteur.user.user.prenom
             });
             authorLink.id = article.article.auteur;
+            console.log(article.article.auteur)
             authorLink.href = "#";
             authorLink.addEventListener("click", ()=> {
                 let baliseUl = document.createElement("ul");
@@ -137,7 +138,10 @@ export function afficherArticleCompletSpot(link) {
                         const articlesSpot = document.querySelector("#articles")
                         articlesSpot.innerHTML = "";
                         let aut = "";
-                        res.articles.forEach(article => {
+                        console.log(res)
+                        // res.articles.forEach(article => {
+                        for (let i = 0; i < res.articles.count; i++) {
+                            const article = res.articles[i];
                             let link = article.link.self.href.replace("/api", "");
                             console.log(API+link)
                             fetch(API+link)
@@ -161,7 +165,7 @@ export function afficherArticleCompletSpot(link) {
                                     articleSpot.appendChild(titre);
                                     articleSpot.appendChild(baliseUl);
                                 })
-                        })
+                        }
                     })
                 // afficherArticlesSpot(getArticleByAuteur(authorLink.getAttribute("id")));
             })
