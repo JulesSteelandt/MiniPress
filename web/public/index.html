@@ -5,20 +5,26 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <title>MiniPress</title>
 </head>
 <body>
-<header>ça c'est le header</header>
+<header><h1 class="titre">MiniPress</h1></header>
 
-<input type="text" id="filtragetitre" placeholder="Cherche ton article avec un mot dans le titre">
-<input type="text" id="filtragetitreresume" placeholder="Cherche ton article avec un mot dans le titre ou le resume">
-<input type="button" id="sens" value="Ascendant descendant">
+<div id="categories" class="categorie"></div>
+<div class="bar">
+    <input type="text" id="filtragetitre" placeholder="Cherche ton article avec un mot dans le titre">
+    <input type="text" id="filtragetitreresume"
+           placeholder="Cherche ton article avec un mot dans le titre ou le resume">
+</div>
+<br>
+    <input type="button" id="sens" class="sens" value="Ordre Décroissant / Croissant">
 
-<div id="categories"></div>
-<div id="articles"></div>
-<div id="article"></div>
+<h1 class="artitre">Articles :</h1>
+<div id="articles" class="article"></div>
+<div id="article" class="grosarticle"></div>
 
-<footer>ça c'est le footer</footer>
+<footer>Minipress par Timothée Brindejonc, Jules Steelandt et Nicolas Bernardet</footer>
 <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
 <script type="module" src="../src/index.js"></script>
 
