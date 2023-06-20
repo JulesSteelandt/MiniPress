@@ -13,7 +13,3 @@ getCategorie()
     .then(res =>{
         afficherCategoriesSpot(res)
     })
-
-document.querySelector("#filtrage").addEventListener("keyup", () => {
-    filtrerArticlesByTitreOuResume(document.querySelector("#filtrage").textContent)
-})
