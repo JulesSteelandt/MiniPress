@@ -1,5 +1,35 @@
 import {API} from "./constant.js";
 
+export function getScreenArticle(){
+    //Récupérer les articles existant déjà dans la balise et les placer dans un tableau
+    let articles = document.querySelectorAll("#articles li");
+    let tab = [];
+    for (let i = 0; i < articles.length; i++) {
+        tab.push(articles[i]);
+    }
+    return tab;
+}
+
+export function afficherArticleTableau(tab, ascendant){
+    //Trier le tableau en fonction de l'ordre choisi
+    if (ascendant){
+        tab.sort((a, b) => {
+            return a.textContent.localeCompare(b.textContent)
+        })
+    } else {
+        tab.sort((a, b) => {
+            return b.textContent.localeCompare(a.textContent)
+        })
+    }
+    //Afficher le tableau trié
+    let articleUl = document.createElement("ul");
+    for (let i = 0; i < tab.length; i++) {
+        articleUl.appendChild(tab[i]);
+    }
+    let articlesSpot = document.querySelector("#articles");
+    articlesSpot.innerHTML = "";
+    articlesSpot.appendChild(articleUl);
+}
 export function getArticles(){
 
     return fetch(`${API}/articles/`)
@@ -44,7 +74,7 @@ export function getArticleByCategorieId(id){
 }
 
 export function getArticleByAuteur(auteurId){
-    return fetch(`${API}/auteurs/${auteurId}/articles`)
+    return fetch(`${API}/api/auteurs/${auteurId}/articles`)
         .then(response => {
             return response.json()
         })
@@ -55,7 +85,6 @@ export function getArticleByAuteur(auteurId){
 
 
 export function afficherArticlesSpot(articles) {
-    let tab = [];
     const articlesSpot = document.querySelector("#articles")
     articlesSpot.innerHTML = "";
     let articleUl = document.createElement("ul");
