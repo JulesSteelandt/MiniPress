@@ -9,6 +9,7 @@ class Article {
   final String contenu;
   final DateTime dateCreation;
   final String image;
+  final int auteurId;
   Categorie? categorie;
   Utilisateur? auteur;
 
@@ -20,6 +21,7 @@ class Article {
     required this.contenu,
     required this.dateCreation,
     required this.image,
+    required this.auteurId,
     this.auteur,
     this.categorie
   });
@@ -42,7 +44,8 @@ class Article {
       resume: json['resume'],
       contenu: json['contenu'],
       dateCreation: DateTime.parse(json['date_creation']),
-      image: json['image']
+      image: json['image'],
+      auteurId: json['auteur']
     );
   }
 }
