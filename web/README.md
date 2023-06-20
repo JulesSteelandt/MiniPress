@@ -17,4 +17,4 @@
 ## 7 Filtrage des listes d’articles selon un mot clé dans le titre
 ✅ Fonctionnalité réalisée
 ## 8 Filtrage des listes d’articles selon un mot clé dans le titre ou dans le résumé
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée
