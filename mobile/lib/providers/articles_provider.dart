@@ -24,5 +24,8 @@ class ArticlesProvider extends ChangeNotifier {
 
       _allArticles.insert(0, Article.fromJson(articleJson));
     }
+
+    print(_allArticles);
+    notifyListeners();
   }
 }
