@@ -2,9 +2,9 @@
 
 namespace minipress\api\actions;
 
+use minipress\api\services\article\ArticleService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use minipress\api\services\article\ArticleService;
 
 class GetArticlesByIdAction extends AbstractAction
 {
@@ -15,13 +15,10 @@ class GetArticlesByIdAction extends AbstractAction
 
         //Récupère un article selon son id donné dans l'URL
         $article = ArticleService::getArticleById($args['id_a']);
-
-
         //tableau contenant les informations voulues
-        $data = [
-            'type' => 'collection',
-        ];
+        if ($article!=null) {
             $data = [
+                'type' => 'collection',
                 'article' => [
                     'id' => $article['id'],
                     'titre' => $article['titre'],
@@ -34,6 +31,12 @@ class GetArticlesByIdAction extends AbstractAction
                     'image' => $article['image'],
                 ],
             ];
+        }else{
+            $data = [
+                'type' => 'collection',
+                'article' => 'null'
+                ];
+        }
 
         // les envois sous format json
         $response->getBody()->write(json_encode($data));

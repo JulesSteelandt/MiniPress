@@ -2,9 +2,9 @@
 
 namespace minipress\api\actions;
 
+use minipress\api\services\article\ArticleService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use minipress\api\services\article\ArticleService;
 
 class GetArticlesAction extends AbstractAction
 {
@@ -13,8 +13,14 @@ class GetArticlesAction extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
+
+        $params = $request->getQueryParams();
+        $sort = null;
+        if (isset($params['sort'])){
+            $sort = $params['sort'];
+        }
         //Récupère les articles
-        $articles = ArticleService::getArticle();
+        $articles = ArticleService::getArticle($sort);
 
         //tableau contenant les informations voulues
         $data = [
@@ -31,7 +37,6 @@ class GetArticlesAction extends AbstractAction
                 'links' => [
                     'self' => [
                         'href' => '/api/articles/'.$article['id'],
-                        'auteur' => '/api/auteurs/'.$article['auteur'],
                     ],
                 ],
             ];
