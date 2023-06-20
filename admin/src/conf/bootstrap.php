@@ -5,10 +5,15 @@ use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 use minipress\admin\services\utils\Eloquent;
 
+
+session_start();
 // crée l'app et le moteur de templates
 $app = AppFactory::create();
 // crée le moteur de templates twig
 $twig = Twig::create(__DIR__ . '/../templates', ['cache' => false]);
+
+$twig->getEnvironment()->addGlobal("userLog",(isset($_SESSION['user']) && $_SESSION['user']!=null));
+$twig->getEnvironment()->addGlobal("userAdmin",(isset($_SESSION['user']) && $_SESSION['user']!=null && $_SESSION['user']->statut==2));
 
 // ajoute le routing et l'erreur middleware
 $app->addRoutingMiddleware();
@@ -21,6 +26,5 @@ $app->add(TwigMiddleware::create($app, $twig));
 // initialise Eloquent avec le fichier de config
 Eloquent::init(__DIR__ . '/../conf/admin.conf.ini');
 
-session_start();
 
 return $app;
