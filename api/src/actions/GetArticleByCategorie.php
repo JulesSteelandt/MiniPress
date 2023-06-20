@@ -18,31 +18,34 @@ class GetArticleByCategorie extends AbstractAction
         $articles = ArticleService::getArticleByCategorie($args['id']);
 
         //tableau contenant les informations voulues
-        $data = [
-            'categorie' => [
-                'id' => $categorie['id'],
-                'nom' => $categorie['nom']
-            ],
-            'articles' => [
-                'type' => 'collection',
-                'count' => count($articles),
-            ]
-        ];
-        foreach ($articles as $art) {
-            $data['articles'][] = [
-                'article' => [
-                    'titre' => $art['titre'],
-                    'date_creation' => $art['date_creation'],
-                    'auteur' => $art['auteur'],
+        if ($categorie != null) {
+            $data = [
+                'categorie' => [
+                    'id' => $categorie['id'],
+                    'nom' => $categorie['nom']
                 ],
-                'links' => [
-                    'self' => [
-                        'href' => '/api/articles/' . $art['id'],
-                    ],
-                ],
+                'articles' => [
+                    'type' => 'collection',
+                    'count' => count($articles),
+                ]
             ];
+            foreach ($articles as $art) {
+                $data['articles'][] = [
+                    'article' => [
+                        'titre' => $art['titre'],
+                        'date_creation' => $art['date_creation'],
+                        'auteur' => $art['auteur'],
+                    ],
+                    'links' => [
+                        'self' => [
+                            'href' => '/api/articles/' . $art['id'],
+                        ],
+                    ],
+                ];
+            }
+        } else {
+            $data = ['categorie' => 'null'];
         }
-
 
 
         // les envois sous format json
