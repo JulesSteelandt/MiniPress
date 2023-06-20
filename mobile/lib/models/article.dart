@@ -8,9 +8,9 @@ class Article {
   final String resume;
   final String contenu;
   final DateTime dateCreation;
+  final String image;
   Categorie? categorie;
   Utilisateur? auteur;
-  String image;
 
   // constructeur qui initialise tout sauf l'auteur, l'image et la catégorie
   Article({
@@ -19,19 +19,14 @@ class Article {
     required this.resume,
     required this.contenu,
     required this.dateCreation,
+    required this.image,
     this.auteur,
-    this.image = "",
     this.categorie
   });
 
   // change l'auteur
   void setAuteur(Utilisateur nom){
     auteur = nom;
-  }
-
-  // change le lien de l'image
-  void setImage(String lienImage){
-    image = lienImage;
   }
 
   // change la catégorie
