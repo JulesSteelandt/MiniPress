@@ -8,13 +8,35 @@ use minipress\api\models\Article;
 class ArticleService {
 
     //récupère tous les articles
-    public static function getArticle(): array {
-        return Article::where('date_publication','!=','null')->get()->toArray();
+    public static function getArticle(string $sort=null): array {
+        $art = Article::where('date_publication','!=','null');
+        if ($sort!=null){
+            switch ($sort){
+                case 'date-asc':
+                    $art->orderBy('date_publication','asc');
+                    break;
+                case 'date-desc':
+                    $art->orderBy('date_publication','desc');
+                    break;
+                case 'auteur':
+                    $user = $art->utilisateur;
+                    var_dump($user);
+                    $art = $user->orderBy('nom', 'asc');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+            return $art->get()->toArray();
     }
 
     //récupère un article avec son id
-    public static function getArticleById(int $id): array {
-        return Article::where('id',$id)->where('date_publication','!=','null')->get()->toArray();
+    public static function getArticleById(int $id): ?array {
+        $art = Article::where('id',$id)->where('date_publication','!=','null')->first();
+        if ($art!=null){
+        return $art->toArray();}
+        return null;
     }
 
     //récupère les articles d'une catégorie
