@@ -19,9 +19,7 @@ class ArticleService {
                     $art->orderBy('date_publication','desc');
                     break;
                 case 'auteur':
-                    $user = $art->utilisateur;
-                    var_dump($user);
-                    $art = $user->orderBy('nom', 'asc');
+                    $art->orderBy('auteur');
                     break;
                 default:
                     break;
