@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/providers/articles_provider.dart';
 import 'package:mobile/providers/categories_provider.dart';
 import 'package:mobile/screens/article_list.dart';
+import 'package:mobile/screens/categorie_list.dart';
 import 'package:provider/provider.dart';
 
 class MiniPressApp extends StatefulWidget {
@@ -28,9 +29,10 @@ class _MiniPressAppState extends State<MiniPressApp> {
             backgroundColor: Colors.lightGreen,
             title: const Text('MiniPress App'),
           ),
-          body: Consumer<ArticlesProvider>(
-            builder: (context, provider, child) {
-              if (provider.allArticles.isEmpty) {
+          body: Consumer2<ArticlesProvider, CategoriesProvider>(
+            builder: (context, articlesProvider, categoriesProvider, child) {
+              if (articlesProvider.allArticles.isEmpty ||
+                  categoriesProvider.allCategories.isEmpty) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +43,9 @@ class _MiniPressAppState extends State<MiniPressApp> {
                         style:
                             TextStyle(color: Colors.lightGreen, fontSize: 40),
                       ),
-                      const SizedBox(height: 80,),
+                      const SizedBox(
+                        height: 80,
+                      ),
                       Transform.scale(
                         scale: 4.0,
                         child: const CircularProgressIndicator(
@@ -54,7 +58,14 @@ class _MiniPressAppState extends State<MiniPressApp> {
                   ),
                 );
               } else {
-                return ArticleList(articles: provider.allArticles);
+                return Column(
+                  children: <Widget>[
+                    CategorieList(categories: categoriesProvider.allCategories),
+                    Expanded(
+                        child: ArticleList(articles: articlesProvider.allArticles),
+                    ),
+                  ],
+                );
               }
             },
           )),
