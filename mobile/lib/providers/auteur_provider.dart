@@ -18,6 +18,8 @@ class AuteurProvider extends ChangeNotifier {
 
   // récupère tous les articles et les stocke en local
   void fetchArticlesByAuteur(Utilisateur auteur) async {
+    // vide la liste pour le prochain auteur
+    _auteurArticles.clear();
     // récupère les articles et convertit en json
     final response = await http.get(Uri.parse('${AppUtils.apiUrl + AppUtils.auteurs}${auteur.id}/articles/'));
     final json = jsonDecode(response.body);
@@ -40,9 +42,9 @@ class AuteurProvider extends ChangeNotifier {
     }
 
     // pour chaque article de la liste
-    for (var article in json['articles']){
+    for (var article in json['articles']['articles']){
       // récupère le lien vers les détails de l'article
-      final articleLink = article['links']['self']['href'];
+      final articleLink = article['link']['self']['href'];
 
       // récupère toutes les infos de l'article grâce à son lien et transforme en json
       final articleResponse = await http.get(Uri.parse(AppUtils.apiUrl + articleLink));
