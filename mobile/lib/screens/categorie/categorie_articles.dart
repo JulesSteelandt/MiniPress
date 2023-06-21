@@ -4,7 +4,7 @@ import 'package:mobile/screens/loading/loading.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/categorie.dart';
-import 'article_list.dart';
+import '../article/article_list.dart';
 
 // widget pour afficher la liste des articles d'une catégorie
 class CategorieArticles extends StatefulWidget {

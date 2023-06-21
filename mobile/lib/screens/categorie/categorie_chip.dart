@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/screens/article/categorie_articles.dart';
+import 'package:mobile/screens/categorie/categorie_articles.dart';
 import 'package:mobile/utils/app_utils.dart';
 
 import '../../models/categorie.dart';
