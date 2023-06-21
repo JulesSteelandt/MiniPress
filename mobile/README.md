@@ -7,7 +7,7 @@
 ## 2 Affichage de la liste des catégories dans une zone dédiée de la page
 ✅ Fonctionnalité réalisée
 ## 3 Affichage de la liste des articles d’une catégorie
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée
 ## 4  Affichage complet d’un article en cliquant sur un article dans une liste
 ❌ Fonctionnalité non réalisée
 ## 5 Affichage de la liste des articles d’un auteur en cliquant sur son nom
