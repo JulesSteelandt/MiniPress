@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/article.dart';
@@ -13,14 +14,18 @@ class ArticleDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text(article.titre),
-        Text(DateFormat.yMd('fr_FR').format(article.dateCreation)),
-        Text(article.resume),
-        Text(article.contenu),
-        Text('${article.auteur?.nom} ${article.auteur?.prenom}'),
-      ],
+    return SingleChildScrollView( // Wrap the entire content in a SingleChildScrollView
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            Text(article.titre),
+            Text(DateFormat.yMd('fr_FR').format(article.dateCreation)),
+            MarkdownBody(data: article.resume),
+            MarkdownBody(data: article.contenu),
+            Text('${article.auteur?.nom} ${article.auteur?.prenom}'),
+          ],
+        ),
+      ),
     );
   }
 }
