@@ -4,6 +4,7 @@ import 'package:mobile/providers/categories_provider.dart';
 import 'package:mobile/screens/article/article_list.dart';
 import 'package:mobile/screens/categorie/categorie_list.dart';
 import 'package:mobile/screens/loading/loading.dart';
+import 'package:mobile/utils/app_utils.dart';
 import 'package:provider/provider.dart';
 
 class MiniPressApp extends StatefulWidget {
@@ -27,7 +28,7 @@ class _MiniPressAppState extends State<MiniPressApp> {
       title: 'MiniPress App',
       home: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.lightGreen,
+            backgroundColor: AppUtils.primaryBackground,
             title: const Text('MiniPress App'),
           ),
           body: Consumer2<ArticlesProvider, CategoriesProvider>(

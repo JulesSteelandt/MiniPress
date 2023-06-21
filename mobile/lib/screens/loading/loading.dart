@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/utils/app_utils.dart';
 
 class Loading extends StatelessWidget {
   final String titre;
@@ -15,7 +16,7 @@ class Loading extends StatelessWidget {
             titre,
             textAlign: TextAlign.center,
             style: const TextStyle(
-                color: Colors.lightGreen,
+                color: AppUtils.primaryBackground,
                 fontSize: 40
             ),
           ),
@@ -25,8 +26,8 @@ class Loading extends StatelessWidget {
           Transform.scale(
             scale: 4.0,
             child: const CircularProgressIndicator(
-              backgroundColor: Colors.lightGreenAccent,
-              color: Colors.green,
+              backgroundColor: AppUtils.primaryBackground,
+              color: AppUtils.secondaryBackground,
               strokeWidth: 4,
             ),
           ),
