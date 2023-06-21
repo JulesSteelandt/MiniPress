@@ -184,9 +184,8 @@ export function afficherArticleCompletSpot(link) {
                         const articlesSpot = document.querySelector("#articles")
                         articlesSpot.innerHTML = "";
                         let aut = "";
-                        // res.articles.forEach(article => {
-                        for (let i = 0; i < res.articles.count; i++) {
-                            const article = res.articles[i];
+                        res.articles.articles.forEach(article => {
+                        // for (let i = 0; i < res.articles.count; i++) {
                             let link = article.link.self.href.replace("/api", "");
                             fetch(API+link)
                                 .then(response => response.json())
@@ -209,7 +208,7 @@ export function afficherArticleCompletSpot(link) {
                                     articleSpot.appendChild(titre);
                                     articleSpot.appendChild(baliseUl);
                                 })
-                        }
+                        })
                     })
                 // afficherArticlesSpot(getArticleByAuteur(authorLink.getAttribute("id")));
             })
