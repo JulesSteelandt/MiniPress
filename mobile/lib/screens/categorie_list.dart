@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/screens/categorie_chip.dart';
 
 import '../models/categorie.dart';
 
@@ -21,15 +22,7 @@ class CategorieList extends StatelessWidget {
               children: List.generate(categories.length, (index) {
                 return Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: Chip(
-                    backgroundColor: Colors.greenAccent,
-                    label: Text(
-                      categories[index].nom,
-                      style: const TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
+                  child: CategorieChip(categorie: categories[index]),
                 );
               }),
             ),
