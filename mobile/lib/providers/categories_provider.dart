@@ -77,6 +77,8 @@ class CategoriesProvider extends ChangeNotifier {
       _currentCategorieArticles.add(Article.fromJson(articleJson['article']));
     }
 
+    // récupère les auteurs des articles
+    await AppUtils.fetchAuteurForArticles(_currentCategorieArticles);
     // notifie les widgets branchés sur le provider
     notifyListeners();
   }
