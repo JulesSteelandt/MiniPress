@@ -15,6 +15,12 @@ class CategorieService
         return null;
     }
 
+    public static function getCategorieByName(string $name): ?array{
+        $cat = Categorie::where('nom',$name)->first();
+        if ($cat!=null) return $cat->toArray();
+        return null;
+    }
+
     //récupère une catégorie avec son id
     public static function getCategorieById(int $id){
         $cat = Categorie::find($id);

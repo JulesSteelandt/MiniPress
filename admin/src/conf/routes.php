@@ -53,6 +53,9 @@ return function (Slim\App $app): void {
     $app->get('/signUp[/]', GetFormCreateUser::class)->setName('inscription');
 
     //Liste des articles par catégorie
+    $app->get('/signUp/error[/]', GetFormCreateUser::class)->setName('inscriptionError');
+
+    //Liste des articles par catégorie
     $app->post('/signUp[/]', PostFormCreateUser::class)->setName('inscription');
 
     //Liste des utilisateurs
@@ -65,6 +68,6 @@ return function (Slim\App $app): void {
     $app->get('/articles/user/{id_user}', GetListArticlesByAuteur::class)->setName('listArticleAuteur');
 
     //Publie ou dépublie
-    $app->post('/articles/user[/]', PostPublication::class)->setName('publierAction');
+    $app->post('/articles/user/{id_user}', PostPublication::class)->setName('publierAction');
 
 };
