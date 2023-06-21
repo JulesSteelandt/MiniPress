@@ -8,24 +8,18 @@ import {
 import {getCategorie, afficherCategoriesSpot} from "./categorie.js";
 import {API} from "./constant.js";
 
-let boo = true;
-
 getArticles()
     .then(res =>{
         afficherArticlesSpot(res)
     })
 
 getCategorie()
-    .then(r=>{
-        console.log(r)})
-getCategorie()
     .then(res =>{
         afficherCategoriesSpot(res)
     })
 
 document.querySelector("#sens").addEventListener("click", () => {
-    boo = !boo;
-    afficherArticleTableau(getScreenArticle(), boo)
+    afficherArticleTableau(getScreenArticle(), false)
 })
 
 document.querySelector("#filtragetitre").addEventListener("keyup", () => {
