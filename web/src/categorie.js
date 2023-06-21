@@ -28,7 +28,7 @@ export function afficherCategoriesSpot(cat) {
             getArticleByCategorieId(category.categorie.id)
                 .then(r =>{
                     document.querySelector("#article").innerHTML = "";
-                    afficherArticlesSpot(r)
+                    afficherArticlesSpot(r.articles)
                 })
 
         });
