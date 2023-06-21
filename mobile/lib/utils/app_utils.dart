@@ -1,6 +1,12 @@
-// stocke les utilitaires de l'appli
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../models/article.dart';
+import '../models/utilisateur.dart';
+
+// stocke les utilitaires de l'appli
 class AppUtils {
   // url de l'api
   static const String apiUrl = 'http://docketu.iutnc.univ-lorraine.fr:17012';
@@ -22,4 +28,20 @@ class AppUtils {
 
   // couleur de texte de l'appli
   static const Color primaryTextColor = Colors.white;
+
+  // récupère l'auteur pour chaque article
+  static Future<void> fetchAuteurForArticles(List<Article> articles) async {
+    // pour chaque article de la liste
+    for (var article in articles){
+      // récupère l'auteur et le converti en json
+      final response = await http.get(Uri.parse('${AppUtils.apiUrl}${AppUtils.auteurs}${article.auteurId}/'));
+      final json = jsonDecode(response.body);
+
+      // transforme le json en utilisateur
+      final Utilisateur auteur = Utilisateur.fromJson(json['user']['user']);
+
+      // change l'auteur de l'article
+      article.setAuteur(auteur);
+    }
+  }
 }
