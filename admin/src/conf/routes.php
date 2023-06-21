@@ -62,7 +62,7 @@ return function (Slim\App $app): void {
     $app->get('/deconnexion[/]', DeconnectUserSession::class)->setName('deconnexion');
 
     //Liste des articles de l'auteur
-    $app->get('/articles/user[/]', GetListArticlesByAuteur::class)->setName('listArticleAuteur');
+    $app->get('/articles/user/{id_user}', GetListArticlesByAuteur::class)->setName('listArticleAuteur');
 
     //Publie ou dépublie
     $app->post('/articles/user[/]', PostPublication::class)->setName('publierAction');

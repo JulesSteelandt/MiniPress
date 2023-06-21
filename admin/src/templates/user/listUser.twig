@@ -12,7 +12,7 @@
                 {% else %}
                     <p>Auteur</p>
                 {% endif %}
-                <p>Liste des articles :</p>
+                <p>Liste des articles de l'auteur <a href="{{ url_for('listArticleAuteur', {'id_user': user.id}) }}"> ici</a></p>
             </li>
         {% endfor %}
     </ul>

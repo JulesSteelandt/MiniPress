@@ -9,17 +9,18 @@ use minipress\admin\models\Categorie;
 class CategorieService
 {
     //récupère toutes les catégories
-    public static function getCategorie(){
-        return Categorie::all()->toArray();
+    public static function getCategorie(): ?array{
+        $cat = Categorie::all();
+        if ($cat!=null) return $cat->toArray();
+        return null;
     }
 
     //récupère une catégorie avec son id
     public static function getCategorieById(int $id){
-        return Categorie::find($id)->first()->toArray();
+        $cat = Categorie::find($id);
+        if ($cat!=null) return $cat->toArray();
+        return null;
     }
-
-
-
 
     //Créer une catégorie
     public static function createCategorie(string $nom){
