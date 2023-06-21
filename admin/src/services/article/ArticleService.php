@@ -9,15 +9,19 @@ class ArticleService
 {
 
     //récupère tous les articles
-    public static function getArticle(): array
+    public static function getArticle(): ?array
     {
-        return Article::all()->toArray();
+        $art = Article::all();
+        if ($art!=null) return $art->toArray();
+        return null;
     }
 
     //récupère un article avec son id
-    public static function getArticleById(int $id): array
+    public static function getArticleById(int $id): ?array
     {
-        return Article::find($id)->first()->toArray();
+        $art = Article::find($id);
+        if ($art!=null) return $art->toArray();
+        return null;
     }
 
     //récupère les articles d'une catégorie
@@ -40,13 +44,13 @@ class ArticleService
         return Article::orderBy("date_creation", $tri)->get()->toArray();
     }
 
-    public static function getArticleByAuteurSortDateCrea(bool $sort = false)
+    public static function getArticleByAuteurSortDateCrea(int $id, bool $sort = false)
     {
         $tri = "asc";
         if (!$sort) {
             $tri = "desc";
         }
-        return Article::where('auteur', $_SESSION['user']->id)->orderBy("date_creation", $tri)->get()->toArray();
+        return Article::where('auteur', $id)->orderBy("date_creation", $tri)->get()->toArray();
     }
 
     public static function publicationService(int $id)

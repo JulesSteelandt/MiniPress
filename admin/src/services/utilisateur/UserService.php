@@ -2,7 +2,6 @@
 
 namespace minipress\admin\services\utilisateur;
 
-use Faker\Calculator\Iban;
 use minipress\admin\models\Utilisateur;
 
 
@@ -33,6 +32,18 @@ class UserService
                 return $user;
             }
         }
+        return null;
+    }
+
+    static function getUser(): ?array{
+        $user = Utilisateur::all();
+        if ($user!=null) return $user->toArray();
+        return null;
+    }
+
+    static function getUserById(int $id) : ?array{
+        $user = Utilisateur::find($id);
+        if ($user!=null) return $user->toArray();
         return null;
     }
 

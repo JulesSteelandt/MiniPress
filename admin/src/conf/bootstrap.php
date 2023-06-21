@@ -1,9 +1,9 @@
 <?php
 
+use minipress\admin\services\utils\Eloquent;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
-use minipress\admin\services\utils\Eloquent;
 
 
 session_start();
@@ -14,6 +14,7 @@ $twig = Twig::create(__DIR__ . '/../templates', ['cache' => false]);
 
 $twig->getEnvironment()->addGlobal("userLog",(isset($_SESSION['user']) && $_SESSION['user']!=null));
 $twig->getEnvironment()->addGlobal("userAdmin",(isset($_SESSION['user']) && $_SESSION['user']!=null && $_SESSION['user']->statut==2));
+$twig->getEnvironment()->addGlobal("userGlobal",($_SESSION['user']));
 
 // ajoute le routing et l'erreur middleware
 $app->addRoutingMiddleware();

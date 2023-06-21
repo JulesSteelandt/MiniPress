@@ -1,11 +1,11 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    {% if userLog %}
-        <h1>Liste de vos articles</h1>
+        <h1>Liste des articles de {{ user.prenom }} {{ user.nom }}</h1>
         <ul>
             {% for article in articles %}
                 <li>{{ article.titre }} : {{ article.date_creation }}
+                    {% if user.id == userGlobal.id or userAdmin %}
                     <form class="form" action="{{ url_for('publierAction') }}" method="post">
                         {% if article.date_publication == null %}
                             <button type="submit" name="publication" value="{{ article.id }}">publier</button>
@@ -14,11 +14,9 @@
                         {% endif %}
                         <input type="hidden" name="csrf" value="{{ csrf }}">
                     </form>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
-    {% else %}
-        <h1> Vous n'êtes pas connecté </h1>
-    {% endif %}
 
 {% endblock %}

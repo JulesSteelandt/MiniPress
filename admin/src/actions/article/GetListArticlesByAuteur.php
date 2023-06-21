@@ -4,6 +4,7 @@ namespace minipress\admin\actions\article;
 
 use minipress\admin\actions\AbstractAction;
 use minipress\admin\services\article\ArticleService;
+use minipress\admin\services\utilisateur\UserService;
 use minipress\admin\services\utils\CsrfService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -25,19 +26,15 @@ class GetListArticlesByAuteur extends AbstractAction
             throw new HttpBadRequestException($request, $csrf['message']);
         }
 
+        $id = $args['id_user'];
+
+        $user = UserService::getUserById($id);
 
         //On récupère toute la liste des articles par date de création inverse
-        $articles = null;
-        if (isset($_SESSION['user'])) {
-            if ($_SESSION['user']->statut == 2) {
-                $articles = ArticleService::getArticleSortDateCrea();
-            } else {
-                $articles = ArticleService::getArticleByAuteurSortDateCrea();
-            }
-        }
+        $articles = ArticleService::getArticleByAuteurSortDateCrea($id);
 
         //Renvoie la page listCategories.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, '/article/listArticlesByAuteur.twig', ['articles' => $articles,'csrf'=>$csrf['token']]);
+        return $view->render($response, '/article/listArticlesByAuteur.twig', ['articles' => $articles,'csrf'=>$csrf['token'],'user'=>$user]);
     }
 }

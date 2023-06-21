@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Utilisateur extends Model
 {
     protected $table = 'utilisateur';
-    protected $primaryKey = 'email';
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $timestamps = false;
 

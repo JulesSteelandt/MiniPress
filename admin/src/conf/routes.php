@@ -13,6 +13,7 @@ use minipress\admin\actions\GetHomePageAction;
 use minipress\admin\actions\user\DeconnectUserSession;
 use minipress\admin\actions\user\GetFormConnexionUser;
 use minipress\admin\actions\user\GetFormCreateUser;
+use minipress\admin\actions\user\GetUsers;
 use minipress\admin\actions\user\PostFormConnexionUser;
 use minipress\admin\actions\user\PostFormCreateUser;
 
@@ -54,11 +55,14 @@ return function (Slim\App $app): void {
     //Liste des articles par catégorie
     $app->post('/signUp[/]', PostFormCreateUser::class)->setName('inscription');
 
+    //Liste des utilisateurs
+    $app->get('/users[/]', GetUsers::class)->setName('listUtilisateurs');
+
     //Deconnecte l'utilisateur
     $app->get('/deconnexion[/]', DeconnectUserSession::class)->setName('deconnexion');
 
     //Liste des articles de l'auteur
-    $app->get('/articles/user[/]', GetListArticlesByAuteur::class)->setName('listArticleAuteur');
+    $app->get('/articles/user/{id_user}', GetListArticlesByAuteur::class)->setName('listArticleAuteur');
 
     //Publie ou dépublie
     $app->post('/articles/user[/]', PostPublication::class)->setName('publierAction');
