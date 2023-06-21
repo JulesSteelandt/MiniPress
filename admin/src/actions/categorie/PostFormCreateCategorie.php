@@ -25,6 +25,11 @@ class PostFormCreateCategorie extends AbstractAction {
         //Verifie le token
         CsrfService::check($csrf);
 
+        if (CategorieService::getCategorieByName($nom)!=null){
+            $view = Twig::fromRequest($request);
+            return $view->render($response, '/categorie/formCreateCategorie.twig',['csrf' => $csrf,'exist'=>true]);
+        }
+
         //Insertion en base de donnée
         CategorieService::createCategorie($nom);
 

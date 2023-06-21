@@ -53,6 +53,9 @@ return function (Slim\App $app): void {
     $app->get('/signUp[/]', GetFormCreateUser::class)->setName('inscription');
 
     //Liste des articles par catégorie
+    $app->get('/signUp/error[/]', GetFormCreateUser::class)->setName('inscriptionError');
+
+    //Liste des articles par catégorie
     $app->post('/signUp[/]', PostFormCreateUser::class)->setName('inscription');
 
     //Liste des utilisateurs

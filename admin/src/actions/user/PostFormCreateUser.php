@@ -3,10 +3,8 @@
 namespace minipress\admin\actions\user;
 
 use minipress\admin\actions\AbstractAction;
-use minipress\admin\models\Utilisateur;
 use minipress\admin\services\utilisateur\UserService;
 use minipress\admin\services\utils\CsrfService;
-use PhpParser\Error;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
@@ -32,19 +30,18 @@ class PostFormCreateUser extends AbstractAction {
         CsrfService::check($csrf);
 
         if (!UserService::emailUserVerif($email)){
-            throw new Error("email existe deja rip");
+            $view = Twig::fromRequest($request);
+            return $view->render($response, '/user/formSignUpUser.twig',['email'=>true, 'csrf'=>$csrf]);
         }
 
-        if (!UserService::emailUserVerif($email)){
-            throw new Error("email existe deja rip");
-        } 
-
         if ($mdp!=$mdpVerif){
-            throw new Error("mdp pas identique rip");
+            $view = Twig::fromRequest($request);
+            return $view->render($response, '/user/formSignUpUser.twig',['mdpIdentique'=>true, 'csrf'=>$csrf]);
         }
 
         if (!UserService::checkPassword($mdp)){
-            throw new Error("Mot de passe pas correct frr");
+            $view = Twig::fromRequest($request);
+            return $view->render($response, '/user/formSignUpUser.twig',['mdpCheck'=>true, 'csrf'=>$csrf]);
         }
 
         //Insertion en base de donnée
