@@ -68,6 +68,6 @@ return function (Slim\App $app): void {
     $app->get('/articles/user/{id_user}', GetListArticlesByAuteur::class)->setName('listArticleAuteur');
 
     //Publie ou dépublie
-    $app->post('/articles/user[/]', PostPublication::class)->setName('publierAction');
+    $app->post('/articles/user/{id_user}', PostPublication::class)->setName('publierAction');
 
 };

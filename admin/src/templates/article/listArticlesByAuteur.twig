@@ -7,7 +7,7 @@
             {% for article in articles %}
                 <li>{{ article.titre }} : {{ article.date_creation }}
                     {% if user.id == userGlobal.id or userAdmin %}
-                    <form class="form" action="{{ url_for('publierAction') }}" method="post">
+                    <form class="form" action="{{ url_for('listArticleAuteur', {'id_user': user.id}) }}" method="post">
                         {% if article.date_publication == null %}
                             <button type="submit" name="publication" value="{{ article.id }}">publier</button>
                         {% else %}
