@@ -1,9 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile/screens/auteur/auteur_articles.dart';
 import 'package:mobile/utils/app_utils.dart';
 
 import '../../models/article.dart';
+import '../../models/utilisateur.dart';
 
 // widget d'affichage d'une article
 class ArticleDetails extends StatelessWidget {
@@ -54,7 +56,27 @@ class ArticleDetails extends StatelessWidget {
                           decorationThickness: 2
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              // récupère l'auteur
+                              final Utilisateur auteur = article.auteur!;
+                              // crée le widget d'affichage
+                              final AuteurArticles auteurArticles = AuteurArticles(auteur: auteur);
+                              // Appelle la fonction pour obtenir la nouvelle page
+                              return AppUtils.buildNewPage(
+                                  context,
+                                  "Articles de ${auteur.nom} ${auteur.prenom}",
+                                  auteurArticles
+                              );
+                            },
+                          );
+                        }),
+                      );
+                    },
                   ),
                 ],
               ),

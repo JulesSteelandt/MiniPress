@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:mobile/providers/articles_provider.dart';
+import 'package:mobile/providers/auteur_provider.dart';
 import 'package:mobile/providers/categories_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ void main() async {
         providers: [
           ChangeNotifierProvider(create: (context) => ArticlesProvider()),
           ChangeNotifierProvider(create: (context) => CategoriesProvider()),
+          ChangeNotifierProvider(create: (context) => AuteurProvider()),
         ],
         child: const MiniPressApp()
       ),
