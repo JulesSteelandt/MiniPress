@@ -3,12 +3,9 @@
 namespace minipress\admin\actions\user;
 
 use minipress\admin\actions\AbstractAction;
-use minipress\admin\services\utils\CsrfService;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Exception\HttpBadRequestException;
 use Slim\Views\Twig;
-use minipress\admin\services\categorie\CategorieService;
 
 // affiche le form d'une catégorie
 class DeconnectUserSession extends AbstractAction {
@@ -20,6 +17,6 @@ class DeconnectUserSession extends AbstractAction {
 
         //Renvoie la page homePage.twig
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'homePage.twig');
+        return $view->render($response, 'user/userDeconnected.twig');
     }
 }

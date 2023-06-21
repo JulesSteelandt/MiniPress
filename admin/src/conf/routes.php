@@ -2,17 +2,19 @@
 
 use minipress\admin\actions\article\GetFormCreateArticle;
 use minipress\admin\actions\article\GetListArticles;
+use minipress\admin\actions\article\GetListArticlesByAuteur;
 use minipress\admin\actions\article\GetListArticlesByCat;
 use minipress\admin\actions\article\PostFormCreateArticle;
+use minipress\admin\actions\article\PostPublication;
 use minipress\admin\actions\categorie\GetFormCreateCategorie;
 use minipress\admin\actions\categorie\GetListCategories;
 use minipress\admin\actions\categorie\PostFormCreateCategorie;
 use minipress\admin\actions\GetHomePageAction;
-use minipress\admin\actions\user\GetFormConnexionUser;
-use minipress\admin\actions\user\PostFormConnexionUser;
-use minipress\admin\actions\user\GetFormCreateUser;
-use minipress\admin\actions\user\PostFormCreateUser;
 use minipress\admin\actions\user\DeconnectUserSession;
+use minipress\admin\actions\user\GetFormConnexionUser;
+use minipress\admin\actions\user\GetFormCreateUser;
+use minipress\admin\actions\user\PostFormConnexionUser;
+use minipress\admin\actions\user\PostFormCreateUser;
 
 return function (Slim\App $app): void {
 
@@ -52,6 +54,13 @@ return function (Slim\App $app): void {
     //Liste des articles par catégorie
     $app->post('/signUp[/]', PostFormCreateUser::class)->setName('inscription');
 
+    //Deconnecte l'utilisateur
     $app->get('/deconnexion[/]', DeconnectUserSession::class)->setName('deconnexion');
+
+    //Liste des articles de l'auteur
+    $app->get('/articles/user[/]', GetListArticlesByAuteur::class)->setName('listArticleAuteur');
+
+    //Publie ou dépublie
+    $app->post('/articles/user[/]', PostPublication::class)->setName('publierAction');
 
 };
