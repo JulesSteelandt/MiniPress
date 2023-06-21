@@ -1,6 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+    {% if user != null %}
         <h1>Liste des articles de {{ user.prenom }} {{ user.nom }}</h1>
         <ul>
             {% for article in articles %}
@@ -18,5 +19,8 @@
                 </li>
             {% endfor %}
         </ul>
+    {% else %}
+    <h1> Aucun utilisateur avec cette id</h1>
+    {% endif %}
 
 {% endblock %}

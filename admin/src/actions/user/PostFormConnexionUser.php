@@ -5,7 +5,6 @@ namespace minipress\admin\actions\user;
 use minipress\admin\actions\AbstractAction;
 use minipress\admin\services\utilisateur\UserService;
 use minipress\admin\services\utils\CsrfService;
-use PhpParser\Error;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
@@ -29,7 +28,9 @@ class PostFormConnexionUser extends AbstractAction {
         $user = UserService::connexionUser($email,$mdp);
 
         if ($user == null){
-            throw new Error("util marche pas");
+            $view = Twig::fromRequest($request);
+            return $view->render($response, '/user/formSignInUser.twig',['fail'=>true, 'csrf'=>$csrf]);
+
         }else{
             $_SESSION['user'] = $user;
         }

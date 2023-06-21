@@ -11,7 +11,7 @@ class UserService
 
     //Verifie que l'email de l'user n'est pas déjà enregistré
     static function emailUserVerif(string $email):bool{
-        return Utilisateur::find($email) == null;
+        return Utilisateur::where('email',$email)->first() == null;
     }
 
     //Créer un utilisateur

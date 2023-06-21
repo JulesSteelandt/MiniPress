@@ -1,11 +1,15 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+    {% if categorie != null %}
     <h1>Liste des articles de la catégorie {{ categorie.nom }}</h1>
     <ul>
     {% for article in articles%}
         <li>{{ article.titre }} : {{ article.date_creation }}</li>
     {% endfor %}
     </ul>
+    {% else %}
+    <h1>Aucune catégorie avec cette id</h1>
+    {% endif %}
 
 {% endblock %}
