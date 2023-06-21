@@ -44,4 +44,15 @@ class AppUtils {
       article.setAuteur(auteur);
     }
   }
+
+  // affiche une nouvelle page avec pour enfant le widget des paramètres
+  static Widget buildNewPage(BuildContext context, String titleText, Widget display){
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppUtils.primaryBackground,
+        title: Text(titleText),
+      ),
+      body: display,
+    );
+  }
 }
