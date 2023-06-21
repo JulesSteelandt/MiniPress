@@ -30,13 +30,25 @@ class _MiniPressAppState extends State<MiniPressApp> {
             builder: (context, provider, child) {
               if (provider.allArticles.isEmpty) {
                 return Center(
-                  child: Transform.scale(
-                    scale: 4.0,
-                    child: const CircularProgressIndicator(
-                      backgroundColor: Colors.lightGreenAccent,
-                      color: Colors.green,
-                      strokeWidth: 4,
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        'Chargement des articles',
+                        textAlign: TextAlign.center,
+                        style:
+                            TextStyle(color: Colors.lightGreen, fontSize: 40),
+                      ),
+                      const SizedBox(height: 80,),
+                      Transform.scale(
+                        scale: 4.0,
+                        child: const CircularProgressIndicator(
+                          backgroundColor: Colors.lightGreenAccent,
+                          color: Colors.green,
+                          strokeWidth: 4,
+                        ),
+                      ),
+                    ],
                   ),
                 );
               } else {
