@@ -13,7 +13,6 @@ class GetArticlesAction extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
-
         $params = $request->getQueryParams();
         $sort = null;
         if (isset($params['sort'])){
