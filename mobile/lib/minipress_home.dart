@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/providers/articles_provider.dart';
-import 'package:mobile/screens/article_preview.dart';
+import 'package:mobile/screens/article_list.dart';
 import 'package:provider/provider.dart';
 
 class MiniPressApp extends StatefulWidget {
@@ -52,12 +52,7 @@ class _MiniPressAppState extends State<MiniPressApp> {
                   ),
                 );
               } else {
-                return ListView.builder(
-                    itemCount: provider.allArticles.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ArticlePreview(
-                          article: provider.allArticles[index]);
-                    });
+                return ArticleList(articles: provider.allArticles);
               }
             },
           )),
