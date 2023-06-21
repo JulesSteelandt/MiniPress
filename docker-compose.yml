@@ -30,11 +30,10 @@ services:
       - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
       - https_proxy=http://www-cache-iutnc.univ-lorraine.fr:3128
     volumes:
-      - ./web/public:/var/www/html
-      - ./web/src:/var/www/src
+      - ./web/public:/usr/local/apache2/htdocs/
+      - ./web/src:/usr/local/apache2/htdocs/src/
     networks:
       - minipress.net
-    working_dir: /var/www/src
     depends_on:
       - database
 
