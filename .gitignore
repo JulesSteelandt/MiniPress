@@ -4,3 +4,4 @@
 /.env
 /admin/vendor/
 /api/vendor/
+/admin/node_modules/

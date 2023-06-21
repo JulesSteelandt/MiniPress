@@ -1,13 +1,13 @@
 <html lang="fr">
 <head>
     <title>Appli</title>
-    <link rel="stylesheet" href="{{ base_path() }}/css/style.css">
+    <link rel="stylesheet" href="{{ base_path() }}/css/output.css">
 </head>
 <body>
 <header>
     <h1>MiniPress</h1>
 </header>
-<nav>
+<nav class="bg-blue-500">
     <a href="{{ url_for('homePage') }}">Home</a>
     <a href="{{ url_for('listArticle') }}">Articles</a>
     <a href="{{ url_for('listCat') }}">Catégories</a>
