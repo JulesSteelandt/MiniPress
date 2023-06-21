@@ -14,15 +14,15 @@ class CategoriesProvider extends ChangeNotifier {
   // getter de la liste de catégories
   UnmodifiableListView<Categorie> get allCategories => UnmodifiableListView(_allCategories);
 
-  // récupère tous les articles et les stocke en local
+  // récupère toutes les catégories et les stocke en local
   void fetchCategories() async {
     // récupère les articles et convertit en json
     final response = await http.get(Uri.parse(AppUtils.apiUrl + AppUtils.categories));
     final json = jsonDecode(response.body);
 
-    // pour chaque article de la liste
+    // pour chaque catégorie de la liste
     for (var categorie in json['categories']){
-      // ajoute à la liste le json converti en article
+      // ajoute à la liste le json converti en catégorie
       _allCategories.insert(0, Categorie.fromJson(categorie['categorie']));
     }
     // notifie les widgets branchés sur le provider
