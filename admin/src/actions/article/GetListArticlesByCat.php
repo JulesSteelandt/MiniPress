@@ -20,7 +20,7 @@ class GetListArticlesByCat extends AbstractAction {
 
         //On récupère toute la liste des articles d'une catégorie
         $categorie = CategorieService::getCategorieById($id_cat);
-        $articles = ArticleService::getArticleByCategorieSort($id_cat,false);
+        $articles = ArticleService::getArticleByCategorieSort($id_cat);
 
         //Renvoie la page formCreateCategorie.twig
         $view = Twig::fromRequest($request);
