@@ -8,6 +8,16 @@ class CategorieChip extends StatelessWidget {
 
   const CategorieChip({super.key, required this.categorie});
 
+  Widget buildNewPage(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.lightGreen,
+        title: Text('Catégorie ${categorie.nom}'),
+      ),
+      body: CategorieArticles(categorie: categorie),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,10 +33,14 @@ class CategorieChip extends StatelessWidget {
       ),
       onTap: (){
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CategorieArticles(categorie: categorie)
-            )
+          context,
+          MaterialPageRoute(builder: (BuildContext context) {
+            return Builder(
+              builder: (BuildContext context) {
+                return buildNewPage(context); // Appelle la fonction pour obtenir la nouvelle page
+              },
+            );
+          }),
         );
       },
     );
