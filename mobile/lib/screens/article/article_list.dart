@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../models/article.dart';
+import '../../models/article.dart';
 import 'article_preview.dart';
 
 class ArticleList extends StatelessWidget {
