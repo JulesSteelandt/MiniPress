@@ -3,9 +3,9 @@
 
 # Fonctionnalités 🪣
 ## 1 Affichage de la liste des articles dans l’ordre chronologique inverse
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée
 ## 2 Affichage de la liste des catégories dans une zone dédiée de la page
-❌ Fonctionnalité non réalisée
+✅ Fonctionnalité réalisée
 ## 3 Affichage de la liste des articles d’une catégorie
 ❌ Fonctionnalité non réalisée
 ## 4  Affichage complet d’un article en cliquant sur un article dans une liste
