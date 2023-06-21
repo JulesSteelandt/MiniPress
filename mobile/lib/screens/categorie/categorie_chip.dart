@@ -10,10 +10,11 @@ class CategorieChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Chip(
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: Colors.lightGreen,
       label: Text(
         categorie.nom,
         style: const TextStyle(
+          color: Colors.white,
           fontSize: 20,
         ),
       ),
