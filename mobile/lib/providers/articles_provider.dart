@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:mobile/models/utilisateur.dart';
 import 'package:mobile/utils/app_utils.dart';
 
 import '../models/article.dart';
@@ -35,24 +34,8 @@ class ArticlesProvider extends ChangeNotifier {
     }
 
     // attends la récupération des auteurs pour chaque article
-    await _fetchAuteurForArticles();
+    await AppUtils.fetchAuteurForArticles(_allArticles);
     // notifie les widgets branchés sur le provider
     notifyListeners();
-  }
-
-  // récupère l'auteur pour chaque article
-  Future<void> _fetchAuteurForArticles() async {
-    // pour chaque article de la liste
-    for (var article in _allArticles){
-      // récupère l'auteur et le converti en json
-      final response = await http.get(Uri.parse('${AppUtils.apiUrl}${AppUtils.auteurs}${article.auteurId}/'));
-      final json = jsonDecode(response.body);
-
-      // transforme le json en utilisateur
-      final Utilisateur auteur = Utilisateur.fromJson(json['user']['user']);
-
-      // change l'auteur de l'article
-      article.setAuteur(auteur);
-    }
   }
 }
