@@ -30,7 +30,7 @@ class GetArticleByCategorie extends AbstractAction
                 ]
             ];
             foreach ($articles as $art) {
-                $data['articles'][] = [
+                $data['articles']['articles'][] = [
                     'article' => [
                         'titre' => $art['titre'],
                         'date_creation' => $art['date_creation'],

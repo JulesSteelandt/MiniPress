@@ -37,7 +37,7 @@ class GetArticlesByAuteurAction extends AbstractAction
 
             // parcours les articles et inscrit le lien
             foreach ($articles as $article) {
-                $data['articles'][] = [
+                $data['articles']['articles'][] = [
                     'link' => [
                         'self' => [
                             'href' => '/api/articles/' . $article['id'] . '/',
