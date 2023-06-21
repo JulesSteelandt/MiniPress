@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/categorie.dart';
+import '../../models/categorie.dart';
 
 class CategorieChip extends StatelessWidget {
   final Categorie categorie;

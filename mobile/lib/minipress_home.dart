@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/providers/articles_provider.dart';
 import 'package:mobile/providers/categories_provider.dart';
-import 'package:mobile/screens/article_list.dart';
-import 'package:mobile/screens/categorie_list.dart';
+import 'package:mobile/screens/article/article_list.dart';
+import 'package:mobile/screens/categorie/categorie_list.dart';
 import 'package:provider/provider.dart';
 
 class MiniPressApp extends StatefulWidget {

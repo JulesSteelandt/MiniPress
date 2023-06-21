@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/screens/categorie_chip.dart';
+import 'package:mobile/screens/categorie/categorie_chip.dart';
 
-import '../models/categorie.dart';
+import '../../models/categorie.dart';
 
 class CategorieList extends StatelessWidget {
   // liste locale de catégories
