@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/providers/articles_provider.dart';
+import 'package:mobile/providers/categories_provider.dart';
 import 'package:mobile/screens/article_list.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,7 @@ class _MiniPressAppState extends State<MiniPressApp> {
   void initState() {
     super.initState();
     Provider.of<ArticlesProvider>(context, listen: false).fetchArticles();
+    Provider.of<CategoriesProvider>(context, listen: false).fetchCategories();
   }
 
   @override
