@@ -22,19 +22,34 @@ class ArticlePreview extends StatelessWidget {
           )
       ),
       onTap: (){
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (BuildContext context) {
-            return Builder(
-              builder: (BuildContext context) {
-                // crée le widget d'affichage
-                final ArticleDetails articleDetails = ArticleDetails(article: article);
-                // Appelle la fonction pour obtenir la nouvelle page
-                return AppUtils.buildNewPage(context, article.titre, articleDetails);
-              },
-            );
-          }),
-        );
+        if (article.id == -1) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              backgroundColor: AppUtils.primaryBackground,
+              content: Text(
+                  "Cet article n'est pas consultable",
+                style: TextStyle(
+                  color: AppUtils.primaryTextColor,
+                  fontSize: 20
+                ),
+              ),
+            ),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (BuildContext context) {
+              return Builder(
+                builder: (BuildContext context) {
+                  // crée le widget d'affichage
+                  final ArticleDetails articleDetails = ArticleDetails(article: article);
+                  // Appelle la fonction pour obtenir la nouvelle page
+                  return AppUtils.buildNewPage(context, article.titre, articleDetails);
+                },
+              );
+            }),
+          );
+        }
       },
     );
   }
