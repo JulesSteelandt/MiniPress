@@ -33,7 +33,7 @@ CREATE TABLE article
 );
 
 INSERT INTO utilisateur values (1, 'user1@mail.com','$2y$10$wpmkRKMEvVmFLDWZcENR4et2vz8v9gjm4hQT8VB5TV6cGuIlBLzMG','Util','Isateur', 2);
-INSERT INTO utilisateur values (2, 'user2@mail.com','$2y$10$3c/O.sP/rpT/A5zxgDQBZuL5Vpo6MyH0IUnoWo1Bjpvxb/XqCEGgq','User','Magic', 1);
+INSERT INTO utilisateur values (2, 'user2@mail.com','$2y$10$3c/O.sP/rpT/A5zxgDQBZuL5Vpo6MyH0IUnoWo1Bjpvxb/XqCEGgq','User','Normal', 1);
 INSERT INTO utilisateur values (3, 'maxime.bg@mail.com','$2y$10$6LDVQwJAYFXWqkTrKSMkK.rs3G30qVScIAgnCuXQsCw6Po515j/9K','Maxime','Biaggi', 1);
 
 INSERT INTO categorie values (1,'Sport');
