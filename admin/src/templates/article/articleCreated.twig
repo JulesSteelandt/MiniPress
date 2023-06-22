@@ -1,6 +1,11 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Votre article a été crée</h1>
-    <p><a href="{{ url_for('homePage') }}">Accueil</a></p>
+    <section id="homepage"
+             class="bg-main-background w-full h-screen flex flex-col justify-center items-center space-y-12">
+
+    <h1 class="text-4xl font-bold text-tea-green">Votre article a bien été crée</h1>
+    <p class="borderLink"><a class="link" href="{{ url_for('homePage') }}">Accueil</a></p>
+    </section>
+
 {% endblock %}

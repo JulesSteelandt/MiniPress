@@ -1,15 +1,19 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    {% if categorie != null %}
-    <h1>Liste des articles de la catégorie {{ categorie.nom }}</h1>
-    <ul>
+    {% if categorie != null %} <section id="homepage"
+        class="bg-main-background w-full h-[92vh] flex flex-col justify-center items-center space-y-12">
+
+        <h1 class="text-center text-6xl font-bold text-tea-green">Liste des articles de la catégorie {{ categorie.nom }}</h1>
+    <ul class="list-disc">
     {% for article in articles%}
-        <li>{{ article.titre }} : {{ article.date_creation }}</li>
+        <li class="my-3">Titre: {{ article.titre }} <p>Publié le {{ article.date_creation }}</p></li>
     {% endfor %}
     </ul>
     {% else %}
-    <h1>Aucune catégorie avec cette id</h1>
+        <h1 class="bg-main-background h-[92vh] text-4xl font-bold text-red-600 flex flex-col justify-center items-center">Aucune catégorie avec cet id</h1>
+
     {% endif %}
+    </section>
 
 {% endblock %}

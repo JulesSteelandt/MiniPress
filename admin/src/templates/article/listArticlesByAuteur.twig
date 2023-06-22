@@ -2,16 +2,18 @@
 
 {% block content %}
     {% if user != null %}
-        <h1>Liste des articles de {{ user.prenom }} {{ user.nom }}</h1>
-        <ul>
+        <section id="homepage"
+        class="bg-main-background w-full h-[92vh] flex flex-col justify-center items-center space-y-12">
+        <h1 class="text-center text-6xl font-bold text-tea-green">Liste des articles de {{ user.prenom }} {{ user.nom }}</h1>
+        <ul class="list-disc">
             {% for article in articles %}
-                <li>{{ article.titre }} : {{ article.date_creation }}
+                <li class="my-3">Titre: {{ article.titre }} <p>Publié le {{ article.date_creation }}</p></li>
                     {% if user.id == userGlobal.id or userAdmin %}
                     <form class="form" action="{{ url_for('listArticleAuteur', {'id_user': user.id}) }}" method="post">
                         {% if article.date_publication == null %}
-                            <button type="submit" name="publication" value="{{ article.id }}">publier</button>
+                            <button class="form-button" type="submit" name="publication" value="{{ article.id }}">publier</button>
                         {% else %}
-                            <button type="submit" name="publication" value="{{ article.id }}">dépublier</button>
+                            <button class="form-button" type="submit" name="publication" value="{{ article.id }}">dépublier</button>
                         {% endif %}
                         <input type="hidden" name="csrf" value="{{ csrf }}">
                     </form>
@@ -19,8 +21,9 @@
                 </li>
             {% endfor %}
         </ul>
-    {% else %}
-    <h1> Aucun utilisateur avec cette id</h1>
+    {% else %} <h1 class="bg-main-background h-[92vh] text-4xl font-bold text-red-600 flex flex-col justify-center items-center">Aucun utilisateur avec cet id</h1>
+
     {% endif %}
+    </section>
 
 {% endblock %}
