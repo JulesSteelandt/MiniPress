@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile/utils/tri_ordre.dart';
 
 import '../models/article.dart';
 import '../models/utilisateur.dart';
@@ -54,5 +55,14 @@ class AppUtils {
       ),
       body: display,
     );
+  }
+
+  // trie une liste d'articles selon l'ordre en paramètres
+  static void orderArticles(List<Article> articles, TriOrdre ordre){
+    if (ordre == TriOrdre.descendant){
+      articles.sort((a, b) => a.dateCreation.compareTo(b.dateCreation));
+    } else {
+      articles.sort((a, b) => b.dateCreation.compareTo(a.dateCreation));
+    }
   }
 }
