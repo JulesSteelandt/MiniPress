@@ -44,7 +44,8 @@ class _ArticleListState extends State<ArticleList> {
     setState(() {
       // filtre la liste sur le titre des articles
       articlesToUse = widget.articles.where((element) {
-        return element.titre.toLowerCase().contains(value.toLowerCase());
+        return element.titre.toLowerCase().contains(value.toLowerCase()) ||
+            element.resume.toLowerCase().contains(value.toLowerCase());
       }).toList();
     });
   }
