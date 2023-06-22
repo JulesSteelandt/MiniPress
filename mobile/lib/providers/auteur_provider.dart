@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import '../models/article.dart';
 import '../models/utilisateur.dart';
 import '../utils/app_utils.dart';
+import '../utils/tri_ordre.dart';
 
 // provider pour les opérations sur les auteurs
 class AuteurProvider extends ChangeNotifier {
@@ -58,7 +59,14 @@ class AuteurProvider extends ChangeNotifier {
       _auteurArticles.insert(0, finalArticle);
     }
 
+    // trie les articles du plus récent au plus ancien
+    orderArticles(TriOrdre.ascendant);
     // notifie les widgets branchés sur le provider
     notifyListeners();
+  }
+
+  // trie les articles selon l'ordre donné
+  void orderArticles(TriOrdre ordre){
+    AppUtils.orderArticles(_auteurArticles, ordre);
   }
 }

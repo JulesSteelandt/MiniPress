@@ -35,7 +35,10 @@ class _AuteurArticlesState extends State<AuteurArticles>{
             return Loading(titre: "Chargement des articles de ${widget.auteur.nom} ${widget.auteur.prenom}");
           } else {
             // sinon affiche les articles
-            return ArticleList(articles: provider.auteurArticles);
+            return ArticleList(
+              articles: provider.auteurArticles,
+              callback: provider.orderArticles,
+            );
           }
         }
     );
