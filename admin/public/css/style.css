@@ -8,6 +8,14 @@
         sticky top-0
     }
 
+    .link {
+        @apply h-full border-b-4 border-dark-tea pt-4 border-opacity-0 hover:border-opacity-100 transition pb-4
+    }
+
+    .borderLink{
+        @apply flex flex-col bg-green-tea rounded-md w-72 text-center items-center justify-center
+    }
+
     .nav-link {
         @apply h-full border-b-4 border-green-tea pt-4 border-opacity-0 hover:border-opacity-100 transition pb-4
     }
@@ -24,6 +32,10 @@
         @apply h-1/2 w-full flex flex-col items-center justify-around
     }
 
+    .article-form {
+        @apply w-full flex flex-col items-center justify-around
+    }
+
     .form-label {
         @apply text-primary text-2xl font-bold
     }
@@ -32,8 +44,8 @@
         @apply rounded-md outline-none ps-2 h-10 focus:outline-primary bg-dark-tea placeholder:text-tea-green text-tea-green
     }
 
-    .box-button {
-        @apply rounded-xl border-2 border-dark-tea w-28 h-8 hover:bg-primary transition
+    .form-button {
+        @apply rounded-xl border-2 border-dark-tea w-28 h-8 hover:bg-green-200 transition
     }
 
     .box-link {
