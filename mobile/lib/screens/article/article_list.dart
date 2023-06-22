@@ -1,3 +1,4 @@
+import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/utils/app_utils.dart';
 import 'package:mobile/utils/tri_ordre.dart';
@@ -21,11 +22,33 @@ class ArticleList extends StatefulWidget {
 
 // state du widget
 class _ArticleListState extends State<ArticleList> {
+  // liste d'articles utilisée pour la recherche
+  List<Article> articlesToUse = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // copie la liste du widget dans la liste de recherche
+    articlesToUse = widget.articles;
+  }
+
+  // trie les articles selon un ordre donné
   void orderArticles(TriOrdre ordre){
     setState(() {
       widget.callback(ordre);
     });
   }
+
+  // gère la recherche d'un article
+  void onSearch(String value) {
+    setState(() {
+      // filtre la liste sur le titre des articles
+      articlesToUse = widget.articles.where((element) {
+        return element.titre.toLowerCase().contains(value.toLowerCase());
+      }).toList();
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +77,33 @@ class _ArticleListState extends State<ArticleList> {
                 child: const Icon(Icons.arrow_upward),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SizedBox(
+                width: 250,
+                height: 50,
+                child: EasySearchBar(
+                  title: const Text(
+                      'Recherche',
+                    style: TextStyle(color: AppUtils.primaryTextColor),
+                  ),
+                  iconTheme: const IconThemeData(
+                    color: AppUtils.primaryTextColor
+                  ),
+                  backgroundColor: AppUtils.primaryBackground,
+                  onSearch: onSearch,
+                ),
+              )
+            ),
           ],
         ),
         Expanded(
           // construit la vue des articles
           child: ListView.builder(
-              itemCount: widget.articles.length,
+              itemCount: articlesToUse.length,
               itemBuilder: (BuildContext context, int index) {
                 // construit pour chaque article sa preview
-                return ArticlePreview(article: widget.articles[index]);
+                return ArticlePreview(article: articlesToUse[index]);
               }),
         )
       ],
