@@ -24,6 +24,10 @@ class ArticleDetails extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
+              child: Image.network(article.image),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
               child: Text(
                 article.titre,
                 textAlign: TextAlign.center,
