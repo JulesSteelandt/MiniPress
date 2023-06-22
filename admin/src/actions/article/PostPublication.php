@@ -19,7 +19,7 @@ class PostPublication extends AbstractAction {
         //Recupère les valeurs du form
         $params = $request->getParsedBody();
 
-        $idArt = $params['publication'];
+        $idArt = filter_var($params['publication'], FILTER_VALIDATE_INT);
         $csrf = $params['csrf'];
 
         //Verifie le token
