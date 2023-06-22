@@ -1,29 +1,27 @@
 <html lang="fr">
 <head>
-    <title>Appli</title>
+    <title>MiniPress</title>
+    <link rel="icon" href="{{ base_path() }}/icon/icon.png">
     <link rel="stylesheet" href="{{ base_path() }}/css/output.css">
 </head>
-<body>
-<header>
-    <h1>MiniPress</h1>
-</header>
-<nav class="bg-blue-500">
-    <a href="{{ url_for('homePage') }}">Home</a>
-    <a href="{{ url_for('listArticle') }}">Articles</a>
-    <a href="{{ url_for('listCat') }}">Catégories</a>
-    <a href="{{ url_for('listUtilisateurs') }}">Utilisateurs</a>
+<body class="h-screen w-full flex flex-col items-center">
+<nav class="nav">
+    <a class="nav-link" href="{{ url_for('homePage') }}">Home</a>
+    <a class="nav-link" href="{{ url_for('listArticle') }}">Articles</a>
+    <a class="nav-link" href="{{ url_for('listCat') }}">Catégories</a>
+    <a class="nav-link" href="{{ url_for('listUtilisateurs') }}">Utilisateurs</a>
     {% if userLog %}
-        <a href="{{ url_for('listArticleAuteur', {'id_user': userGlobal.id}) }}">Mes Articles</a>
-        <a href="{{ url_for('formArticle') }}">Créer son article</a>
-        <a href="{{ url_for('formCat') }}">Créer sa catégorie</a>
+        <a class="nav-link" href="{{ url_for('listArticleAuteur', {'id_user': userGlobal.id}) }}">Mes Articles</a>
+        <a class="nav-link" href="{{ url_for('formArticle') }}">Créer son article</a>
+        <a class="nav-link" href="{{ url_for('formCat') }}">Créer sa catégorie</a>
 
         {% if userAdmin %}
-            <a href="{{ url_for('inscription') }}">Inscription</a>
+            <a class="nav-link" href="{{ url_for('inscription') }}">Inscription</a>
         {% endif %}
 
-        <a href="{{ url_for('deconnexion') }}">Deconnexion</a>
+        <a class="nav-link" href="{{ url_for('deconnexion') }}">Deconnexion</a>
     {% else %}
-        <a href="{{ url_for('connexion') }}">Connexion</a>
+        <a class="nav-link" href="{{ url_for('connexion') }}">Connexion</a>
     {% endif %}
 </nav>
 <main>

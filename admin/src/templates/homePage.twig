@@ -2,8 +2,13 @@
 
 {% block content %}
     {% if userLog %}
-        <h1>Bienvenue sur notre site !</h1>
+        <div class="text-center h-20 text-2xl">
+            <h1>Bienvenue sur MiniPress</h1>
+        </div>
     {% else %}
-        <h1>Home Page</h1>
+        <div class="text-center h-20 text-2xl">
+            <h1>MiniPress</h1>
+            <h2>un MiniCMS headless qui fait le Maximum</h2>
+        </div>
     {% endif %}
 {% endblock %}
