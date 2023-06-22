@@ -1,0 +1,4 @@
+enum TriOrdre {
+  ascendant,
+  descendant,
+}
