@@ -1,7 +1,10 @@
 import {API} from "./constant.js";
 
+/**
+ * Récupère les articles du DOM
+ * @returns {*[]}
+ */
 export function getScreenArticle(){
-    //Récupérer les articles existant déjà dans la balise et les placer dans un tableau
     let articles = document.querySelectorAll("#articles li");
     let tab = [];
     for (let i = 0; i < articles.length; i++) {
@@ -10,13 +13,16 @@ export function getScreenArticle(){
     return tab;
 }
 
+/**
+ * Affiche les articles et les trie
+ * @param tab
+ * @param ascendant
+ */
 export function afficherArticleTableau(tab, ascendant){
-    //Trier le tableau en fonction de l'ordre choisi
     if (!ascendant){
         tab.reverse();
     }
 
-    //Afficher le tableau trié
     let articleUl = document.createElement("ul");
     for (let i = 0; i < tab.length; i++) {
         articleUl.appendChild(tab[i]);
@@ -25,6 +31,11 @@ export function afficherArticleTableau(tab, ascendant){
     articlesSpot.innerHTML = "";
     articlesSpot.appendChild(articleUl);
 }
+
+/**
+ * Récupère les articles
+ * @returns {Promise<Response>}
+ */
 export function getArticles(){
 
     return fetch(`${API}/articles/`)
@@ -40,20 +51,11 @@ export function getArticles(){
         })
 }
 
-export function getArticleById(id){
-    return fetch(`${API}/articles/${id}`)
-        .then(r => {
-            if (r.ok){
-                return r.json()
-            } else {
-                Promise.reject(new Error("Problème interne"))
-            }
-        })
-        .catch(e => {
-            console.log("Erreur de récupération de données : ", e.messageerror);
-        })
-}
-
+/**
+ * Récupère un article par catégorie
+ * @param id
+ * @returns {Promise<Response>}
+ */
 export function getArticleByCategorieId(id){
     return fetch(`${API}/categories/${id}/articles`)
         .then(r => {
@@ -68,6 +70,11 @@ export function getArticleByCategorieId(id){
         })
 }
 
+/**
+ * Récupère un article par son auteur
+ * @param auteurId
+ * @returns {Promise<any>}
+ */
 export function getArticleByAuteur(auteurId){
     return fetch(`${API}/auteurs/${auteurId}/articles`)
         .then(response => {
@@ -78,6 +85,9 @@ export function getArticleByAuteur(auteurId){
         });
 }
 
+/**
+ * Récupère un article par mot clé dans le titre ou le résumé
+ */
 export function filtreByTitleResume(){
     let tab = [];
     getArticles()
@@ -87,7 +97,6 @@ export function filtreByTitleResume(){
                     .then(response => response.json())
                     .then(art => {
                         if(article.article.titre.toLowerCase().includes(document.querySelector("#filtragetitreresume").value.toLowerCase()) || art.article.resume.toLowerCase().includes(document.querySelector("#filtragetitreresume").value.toLowerCase())) {
-                            //On met en forme le document de manière à pouvoir appeler la fonction afficherArticleTableau, le tableau doit contenir une liste de a qui quand on clique dessus affiche l'article en gros comme fait la fonction afficherArticlesCompletSpot
                             let li = document.createElement("li");
                             let a = document.createElement("a");
                             a.textContent = article.article.titre;
@@ -104,6 +113,9 @@ export function filtreByTitleResume(){
         })
 }
 
+/**
+ * Récupère un article par mot clé dans le titre
+ */
 export function filtreByTitle(){
     let tab = [];
     getArticles()
@@ -126,6 +138,10 @@ export function filtreByTitle(){
 }
 
 
+/**
+ * Affiche article sous forme de liste dans le dom
+ * @param articles
+ */
 export function afficherArticlesSpot(articles) {
     let tab = [];
     const articlesSpot = document.querySelector("#articles")
@@ -149,15 +165,17 @@ export function afficherArticlesSpot(articles) {
             tab.push(articleLisr)
             articleUl.appendChild(articleLisr);
         });
-        // articlesSpot.appendChild(articleUl);
         tab = tab.sort((a, b) => {
-            // return new Date(a.getAttribute("date")) - new Date(a.getAttribute("date"));
             return a.getAttribute("date").localeCompare(b.getAttribute("date"))
         })
         afficherArticleTableau(tab, true)
     }
 }
 
+/**
+ * Affiche article complet dans le dom
+ * @param link
+ */
 export function afficherArticleCompletSpot(link) {
     let apilink = link.replace("/api", "")
     fetch(API+apilink)
@@ -183,9 +201,7 @@ export function afficherArticleCompletSpot(link) {
                     .then(res => {
                         const articlesSpot = document.querySelector("#articles")
                         articlesSpot.innerHTML = "";
-                        let aut = "";
                         res.articles.articles.forEach(article => {
-                        // for (let i = 0; i < res.articles.count; i++) {
                             let link = article.link.self.href.replace("/api", "");
                             fetch(API+link)
                                 .then(response => response.json())
@@ -210,7 +226,6 @@ export function afficherArticleCompletSpot(link) {
                                 })
                         })
                     })
-                // afficherArticlesSpot(getArticleByAuteur(authorLink.getAttribute("id")));
             })
             articleSpot.appendChild(titleHTML)
             articleSpot.appendChild(authorLink);

@@ -1,6 +1,10 @@
 import {API} from "./constant.js";
 import {afficherArticlesSpot, getArticleByCategorieId} from "./article.js";
 
+/**
+ * Récupère les catégories
+ * @returns {Promise<Response>}
+ */
 export function getCategorie(){
     return fetch(`${API}/categories/`)
         .then(r => {
@@ -15,6 +19,10 @@ export function getCategorie(){
         })
 }
 
+/**
+ * Affiche les catégories dans le dom
+ * @param cat
+ */
 export function afficherCategoriesSpot(cat) {
     const categoriesSpot = document.querySelector("#categories")
     categoriesSpot.innerHTML = "";
