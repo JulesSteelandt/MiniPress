@@ -40,7 +40,10 @@ class _MiniPressAppState extends State<MiniPressApp> {
                   children: <Widget>[
                     CategorieList(categories: categoriesProvider.allCategories),
                     Expanded(
-                        child: ArticleList(articles: articlesProvider.allArticles),
+                        child: ArticleList(
+                          articles: articlesProvider.allArticles,
+                          callback: articlesProvider.orderArticles,
+                        ),
                     ),
                   ],
                 );
