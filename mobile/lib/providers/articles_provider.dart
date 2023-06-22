@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobile/utils/app_utils.dart';
+import 'package:mobile/utils/tri_ordre.dart';
 
 import '../models/article.dart';
 
@@ -35,7 +36,14 @@ class ArticlesProvider extends ChangeNotifier {
 
     // attends la récupération des auteurs pour chaque article
     await AppUtils.fetchAuteurForArticles(_allArticles);
+    // trie les articles du plus récent au plus ancien
+    orderArticles(TriOrdre.ascendant);
     // notifie les widgets branchés sur le provider
     notifyListeners();
+  }
+
+  // trie les articles selon l'ordre donné
+  void orderArticles(TriOrdre ordre){
+    AppUtils.orderArticles(_allArticles, ordre);
   }
 }

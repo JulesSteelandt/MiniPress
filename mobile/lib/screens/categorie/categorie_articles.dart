@@ -38,7 +38,10 @@ class _CategorieArticlesState extends State<CategorieArticles>{
             return Loading(titre: 'Chargement des articles de ${widget.categorie.nom}');
           } else {
             // sinon affiche les articles
-            return ArticleList(articles: provider.currentCategorieArticles);
+            return ArticleList(
+              articles: provider.currentCategorieArticles,
+              callback: provider.orderArticles,
+            );
           }
         }
     );

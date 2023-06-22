@@ -181,18 +181,22 @@ export function afficherArticleCompletSpot(link) {
     fetch(API+apilink)
         .then(response => response.json())
         .then(article => {
-            let articleSpot = document.getElementById("article");
+            let articleSpot = document.querySelector("#article");
             articleSpot.innerHTML = "";
             const titleHTML = document.createElement("p")
+            const imageHTML = document.createElement("img")
+            imageHTML.src = article.article.image
+            const sautHTML = document.createElement("br")
             titleHTML.innerHTML = new showdown.Converter().makeHtml(article.article.titre);
             const contentHTML = document.createElement("p")
+            const resumeHTML = document.createElement("p")
+            resumeHTML.innerHTML = new showdown.Converter().makeHtml(article.article.resume);
             contentHTML.innerHTML = new showdown.Converter().makeHtml(article.article.contenu);
             const authorLink = document.createElement("a");
             fetch(`${API}/auteurs/${article.article.auteur}`).then(response => response.json()).then(auteur => {
                 authorLink.setAttribute("id", auteur.user.user.id)
                 authorLink.textContent = auteur.user.user.nom + " " + auteur.user.user.prenom
             });
-            articleSpot = document.getElementById("articles");
             authorLink.id = article.article.auteur;
             authorLink.href = "#";
             authorLink.addEventListener("click", ()=> {
@@ -215,20 +219,23 @@ export function afficherArticleCompletSpot(link) {
                                     })
                                     a.appendChild(li);
                                     baliseUl.appendChild(a);
-                                    articleSpot.innerHTML = "";
+                                    articlesSpot.innerHTML = "";
                                     let titre = document.createElement("h1");
                                     fetch(API+"/auteurs/"+art.article.auteur)
                                         .then(response => response.json()).then(auteur => {
                                         titre.textContent = "Articles de "+auteur.user.user.nom + " " + auteur.user.user.prenom;
                                     })
-                                    articleSpot.appendChild(titre);
-                                    articleSpot.appendChild(baliseUl);
+                                    articlesSpot.appendChild(titre);
+                                    articlesSpot.appendChild(baliseUl);
                                 })
                         })
                     })
             })
-            articleSpot.appendChild(titleHTML)
             articleSpot.appendChild(authorLink);
+            articleSpot.appendChild(titleHTML)
+            articleSpot.appendChild(resumeHTML);
+            articleSpot.appendChild(sautHTML);
+            articleSpot.appendChild(imageHTML);
             articleSpot.appendChild(contentHTML);
 
 
