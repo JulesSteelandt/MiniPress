@@ -8,6 +8,7 @@ import 'package:mobile/models/utilisateur.dart';
 import '../models/article.dart';
 import '../models/categorie.dart';
 import '../utils/app_utils.dart';
+import '../utils/tri_ordre.dart';
 
 class CategoriesProvider extends ChangeNotifier {
   // liste locale des catégories
@@ -79,7 +80,14 @@ class CategoriesProvider extends ChangeNotifier {
 
     // récupère les auteurs des articles
     await AppUtils.fetchAuteurForArticles(_currentCategorieArticles);
+    // trie les articles du plus récent au plus ancien
+    orderArticles(TriOrdre.ascendant);
     // notifie les widgets branchés sur le provider
     notifyListeners();
+  }
+
+  // trie les articles selon l'ordre donné
+  void orderArticles(TriOrdre ordre){
+    AppUtils.orderArticles(_currentCategorieArticles, ordre);
   }
 }
