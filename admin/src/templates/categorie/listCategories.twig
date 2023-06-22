@@ -1,11 +1,15 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Liste des catégorie</h1>
+    <section id="homepage"
+             class="bg-main-background w-full h-[92vh] flex flex-col justify-center items-center space-y-12">
+
+<h1 class=" text-center text-6xl font-bold text-tea-green">Liste des catégorie</h1>
     <ul>
     {% for categorie in categories%}
-        <li><a href="{{ url_for('listArticleByCat', { 'id_cat': categorie.id }) }}">{{ categorie.nom }}</a></li>
+        <li class="borderLink my-3"><a class="link" href="{{ url_for('listArticleByCat', { 'id_cat': categorie.id }) }}">{{ categorie.nom }}</a></li>
     {% endfor %}
     </ul>
+    </section>
 
 {% endblock %}

@@ -1,16 +1,21 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Connexion</h1>
-    <form class="form" action="{{ url_for('connexion') }}" method="post" >
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" required>
-        <label for="mdp">Mot de passe</label>
-        <input type="password" name="mdp" id="mdp" required>
-        <input type="hidden" name="csrf" value="{{ csrf }}">
-        <input type="submit" value="Créer" class="submit">
-    </form>
+    <section id="homepage"
+             class="bg-main-background w-full h-[92vh] flex flex-col justify-center items-center space-y-12">
+        <h1 class="text-6xl font-bold text-tea-green">Connexion</h1>
+        <div id="login" class="h-1/3">
+            <form class="login-form" action="{{ url_for('connexion') }}" method="post">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" type="email" name="email" id="email" required>
+                <label class="form-label" for="mdp">Mot de passe</label>
+                <input class="form-input" type="password" name="mdp" id="mdp" required>
+                <input class="form-input" type="hidden" name="csrf" value="{{ csrf }}">
+                <input class="form-button" type="submit" value="Créer">
     {% if fail %}
-        <p> Email ou mot de passe incorrect </p>
+        <p class="text-red-600"> Email ou mot de passe incorrect </p>
     {% endif %}
+            </form>
+        </div>
+    </section>
 {% endblock %}

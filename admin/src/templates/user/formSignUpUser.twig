@@ -2,37 +2,41 @@
 
 {% block content %}
     {% if userAdmin %}
-        <h1>Inscription</h1>
-        <form class="form" action="{{ url_for('inscription') }}" method="post">
-            <label for="nom">Nom</label>
-            <input type="text" name="nom" id="nom" required>
-            <label for="prenom">Prenom</label>
-            <input type="text" name="prenom" id="prenom" required>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
-            <label for="mdp">Mot de passe</label>
-            <input type="password" name="mdp" id="mdp" required>
-            <label for="mdpVerif">Entrer à nouveau votre mot de passe</label>
-            <input type="password" name="mdpVerif" id="mdpVerif" required/>
-            <input type="hidden" name="csrf" value="{{ csrf }}">
-            <input type="submit" value="Créer" class="submit">
-        </form>
-
+        <section id="homepage"
+        class="bg-main-background w-full h-[92vh] flex flex-col justify-center items-center space-y-12">
+        <h1 class="text-6xl font-bold text-tea-green">Inscription</h1>
+        <div id="register">
+        <form class="login-form" action="{{ url_for('inscription') }}" method="post">
+        <label class="form-label" for="nom">Nom</label>
+        <input class="form-input" type="text" name="nom" id="nom" required>
+        <label class="form-label" for="prenom">Prenom</label>
+        <input class="form-input" type="text" name="prenom" id="prenom" required>
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" name="email" id="email" required>
+        <label class="form-label" for="mdp">Mot de passe</label>
+        <input class="form-input" type="password" name="mdp" id="mdp" required>
+        <label class="form-label" for="mdpVerif">Entrer à nouveau votre mot de passe</label>
+        <input class="form-input" type="password" name="mdpVerif" id="mdpVerif" required/>
+        <input type="hidden" name="csrf" value="{{ csrf }}">
+        <input class="form-button" type="submit" value="Créer">
 
         {% if email %}
-            <p> Email déjà enregistré </p>
+            <p class="text-red-600"> Email déjà enregistré </p>
         {% endif %}
 
         {% if mdpIdentique %}
-            <p> Mot de passe pas identique</p>
+            <p class="text-red-600"> Mot de passe pas identique</p>
         {% endif %}
 
         {% if mdpCheck %}
-            <p> Mot de passe pas assez fort (Une Majuscule, Une minuscule, 5 caractères)</p>
+            <p class="text-red-600"> Mot de passe pas assez fort (Une Majuscule, Une minuscule, 5 caractères)</p>
         {% endif %}
 
+        </form>
+        </div>
+        </section>
     {% else %}
-        <h1> Vous n'êtes pas admin</h1>
+        <h1 class="bg-main-background h-[92vh] text-4xl font-bold text-red-600 flex flex-col justify-center items-center">Vous n'êtes pas admin</h1>
     {% endif %}
 
 

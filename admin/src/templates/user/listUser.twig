@@ -1,20 +1,23 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-    <h1>Liste des utilisateurs</h1>
-    <ul>
+    <section id="homepage"
+             class="bg-main-background w-full h-[92vh] flex flex-col justify-center items-center space-y-12">
+    <h1 class="text-center text-6xl font-bold text-tea-green">Liste des utilisateurs</h1>
+    <ul class="list-disc">
         {% for user in users %}
-            <li>
-                <p>{{ user.nom }} {{ user.prenom }}</p>
-                <p>{{ user.email }} </p>
+            <li class="my-3">
+                <p>Nom: {{ user.nom }} {{ user.prenom }}</p>
+                <p>Email: {{ user.email }} </p>
                 {% if user.statut == 2 %}
-                    <p>Administrateur</p>
+                    <p>Statut: Administrateur</p>
                 {% else %}
-                    <p>Auteur</p>
+                    <p>Statut: Auteur</p>
                 {% endif %}
-                <p>Liste des articles de l'auteur <a href="{{ url_for('listArticleAuteur', {'id_user': user.id}) }}"> ici</a></p>
+                <p><a class="form-button " href="{{ url_for('listArticleAuteur', {'id_user': user.id}) }}">Liste des articles de l'auteur</a></p>
             </li>
         {% endfor %}
     </ul>
+    </section>
 
 {% endblock %}
