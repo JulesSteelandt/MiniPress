@@ -184,6 +184,9 @@ export function afficherArticleCompletSpot(link) {
             let articleSpot = document.getElementById("article");
             articleSpot.innerHTML = "";
             const titleHTML = document.createElement("p")
+            const imageHTML = document.createElement("img")
+            imageHTML.src = article.article.image
+            const sautHTML = document.createElement("br")
             titleHTML.innerHTML = new showdown.Converter().makeHtml(article.article.titre);
             const contentHTML = document.createElement("p")
             contentHTML.innerHTML = new showdown.Converter().makeHtml(article.article.contenu);
@@ -229,6 +232,8 @@ export function afficherArticleCompletSpot(link) {
             })
             articleSpot.appendChild(titleHTML)
             articleSpot.appendChild(authorLink);
+            articleSpot.appendChild(sautHTML);
+            articleSpot.appendChild(imageHTML);
             articleSpot.appendChild(contentHTML);
 
 
