@@ -17,7 +17,7 @@ class GetListCategories extends AbstractAction {
         //On récupère toute la liste des catégories
         $categories = CategorieService::getCategorie();
 
-        //Renvoie la page formCreateCategorie.twig
+        //Renvoie la page listCategories.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/categorie/listCategories.twig',['categories'=>$categories]);
     }

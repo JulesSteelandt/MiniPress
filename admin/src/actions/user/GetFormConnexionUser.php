@@ -8,7 +8,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Views\Twig;
-use minipress\admin\services\categorie\CategorieService;
 
 // affiche le form d'une catégorie
 class GetFormConnexionUser extends AbstractAction {
@@ -24,7 +23,7 @@ class GetFormConnexionUser extends AbstractAction {
             throw new HttpBadRequestException($request, $csrf['message']);
         }
 
-        //Renvoie la page formCreateCategorie.twig
+        //Renvoie la page formSignInUser.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/user/formSignInUser.twig',['csrf' => $csrf['token']]);
     }

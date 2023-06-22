@@ -28,12 +28,13 @@ class GetListArticlesByAuteur extends AbstractAction
 
         $id = $args['id_user'];
 
+        //On recupère l'user
         $user = UserService::getUserById($id);
 
         //On récupère toute la liste des articles par date de création inverse
         $articles = ArticleService::getArticleByAuteurSortDateCrea($id);
 
-        //Renvoie la page listCategories.twig
+        //Renvoie la page listArticlesByAuteur.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/article/listArticlesByAuteur.twig', ['articles' => $articles,'csrf'=>$csrf['token'],'user'=>$user]);
     }

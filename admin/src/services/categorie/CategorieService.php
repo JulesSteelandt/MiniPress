@@ -15,6 +15,7 @@ class CategorieService
         return null;
     }
 
+    //Récupère une catégorie par son nom
     public static function getCategorieByName(string $name): ?array{
         $cat = Categorie::where('nom',$name)->first();
         if ($cat!=null) return $cat->toArray();

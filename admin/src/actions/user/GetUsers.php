@@ -17,7 +17,7 @@ class GetUsers extends AbstractAction {
 
         $users = UserService::getUser();
 
-        //Renvoie la page formCreateCategorie.twig
+        //Renvoie la page listUser.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/user/listUser.twig',['users'=>$users]);
     }

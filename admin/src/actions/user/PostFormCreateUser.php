@@ -29,16 +29,19 @@ class PostFormCreateUser extends AbstractAction {
         //Verifie le token
         CsrfService::check($csrf);
 
+        //On vérifie que l'email existe pas déjà
         if (!UserService::emailUserVerif($email)){
             $view = Twig::fromRequest($request);
             return $view->render($response, '/user/formSignUpUser.twig',['email'=>true, 'csrf'=>$csrf]);
         }
 
+        //On vérifie que les mots de passes sont idéntiques
         if ($mdp!=$mdpVerif){
             $view = Twig::fromRequest($request);
             return $view->render($response, '/user/formSignUpUser.twig',['mdpIdentique'=>true, 'csrf'=>$csrf]);
         }
 
+        //On vérifie que le mot de passe est assez sécurisé
         if (!UserService::checkPassword($mdp)){
             $view = Twig::fromRequest($request);
             return $view->render($response, '/user/formSignUpUser.twig',['mdpCheck'=>true, 'csrf'=>$csrf]);

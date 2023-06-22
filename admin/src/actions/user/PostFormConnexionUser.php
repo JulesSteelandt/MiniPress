@@ -18,6 +18,7 @@ class PostFormConnexionUser extends AbstractAction {
         //Génère un token csrf
         $params = $request->getParsedBody();
 
+        //Récupère les données du formulaire
         $email = filter_var($params['email'], FILTER_SANITIZE_EMAIL);
         $mdp = $params['mdp'];
         $csrf = $params['csrf'];
@@ -25,9 +26,12 @@ class PostFormConnexionUser extends AbstractAction {
         //Verifie le token
         CsrfService::check($csrf);
 
+        //Connecte l'utilisateur
         $user = UserService::connexionUser($email,$mdp);
 
+        //Si l'user n'dxiste pas, l'email ou le mot de passe est incorrect
         if ($user == null){
+            //Renvoie la page formSignInUser.twig
             $view = Twig::fromRequest($request);
             return $view->render($response, '/user/formSignInUser.twig',['fail'=>true, 'csrf'=>$csrf]);
 
@@ -35,7 +39,7 @@ class PostFormConnexionUser extends AbstractAction {
             $_SESSION['user'] = $user;
         }
 
-        //Renvoie la page formCreateCategorie.twig
+        //Renvoie la page userConnected.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/user/userConnected.twig',['nom'=>$user->nom,'prenom'=>$user->prenom]);
     }

@@ -25,6 +25,7 @@ class UserService
         $user->save();
     }
 
+    //Retourne l'user si l'email et le mot de passe corresponde
     static function connexionUser(string $email, string $mdp){
         $user = Utilisateur::where("email",$email)->first();
         if ($user!=null) {
@@ -35,18 +36,21 @@ class UserService
         return null;
     }
 
+    //Retourne la liste des users
     static function getUser(): ?array{
         $user = Utilisateur::all();
         if ($user!=null) return $user->toArray();
         return null;
     }
 
+    //Retourne l'user avec son id
     static function getUserById(int $id) : ?array{
         $user = Utilisateur::find($id);
         if ($user!=null) return $user->toArray();
         return null;
     }
 
+    //Verifie la sécurité du mot de passe
     static function checkPassword($password) : bool
     {
         $filterPassword = filter_var($password, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -57,18 +61,5 @@ class UserService
 
         return true;
     }
-
-    static function checkString($str) :bool
-    {
-        $filterStr = filter_var($str, FILTER_SANITIZE_SPECIAL_CHARS);
-        if ($filterStr == $str){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-
 
 }

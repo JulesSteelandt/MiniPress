@@ -32,7 +32,7 @@ class PostFormCreateArticle extends AbstractAction {
         //Insertion en base de donnée
         ArticleService::createArticle($titre,$resume,$contenu,$cat,$image);
 
-        //Renvoie la page formCreateCategorie.twig
+        //Renvoie la page articleCreated.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/article/articleCreated.twig');
     }

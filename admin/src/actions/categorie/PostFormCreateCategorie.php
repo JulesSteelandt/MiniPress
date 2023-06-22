@@ -26,6 +26,7 @@ class PostFormCreateCategorie extends AbstractAction {
         CsrfService::check($csrf);
 
         if (CategorieService::getCategorieByName($nom)!=null){
+            //Renvoie la page formCreateCategorie.twig
             $view = Twig::fromRequest($request);
             return $view->render($response, '/categorie/formCreateCategorie.twig',['csrf' => $csrf,'exist'=>true]);
         }
@@ -33,7 +34,7 @@ class PostFormCreateCategorie extends AbstractAction {
         //Insertion en base de donnée
         CategorieService::createCategorie($nom);
 
-        //Renvoie la page formCreateCategorie.twig
+        //Renvoie la page categorieCreated.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/categorie/categorieCreated.twig');
     }

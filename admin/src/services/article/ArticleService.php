@@ -34,7 +34,7 @@ class ArticleService
         return Article::where("categorie_id", $catId)->orderBy("date_creation", $tri)->get()->toArray();
     }
 
-    //Donne la liste des articles triés par ordre de création, false pour inverser l'ordre
+    //Donne la liste des articles triés par ordre de création, true pour inverser l'ordre
     public static function getArticleSortDateCrea(bool $sort = false)
     {
         $tri = "asc";
@@ -44,6 +44,7 @@ class ArticleService
         return Article::orderBy("date_creation", $tri)->get()->toArray();
     }
 
+    //Récupère la liste d'article d'un auteur triés par ordre de création, true pour inverser l'ordre
     public static function getArticleByAuteurSortDateCrea(int $id, bool $sort = false)
     {
         $tri = "asc";
@@ -53,6 +54,7 @@ class ArticleService
         return Article::where('auteur', $id)->orderBy("date_creation", $tri)->get()->toArray();
     }
 
+    //Publie ou dépublie un service
     public static function publicationService(int $id)
     {
         $art = Article::find($id);
@@ -63,6 +65,7 @@ class ArticleService
         }
     }
 
+    //Publie un article
     private static function publierUnArticle(int $id)
     {
         $art = Article::find($id);
@@ -70,6 +73,7 @@ class ArticleService
         $art->save();
     }
 
+    //Depublier un article
     private static function depublierUnArticle(int $id)
     {
         $art = Article::find($id);

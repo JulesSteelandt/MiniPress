@@ -13,6 +13,7 @@ class CategorieService
         return Categorie::all()->toArray();
     }
 
+    //Recupère la catégorie par son id
     public static function getCategorieById(int $id) : ?array {
         $cat = Categorie::find($id);
         if ($cat!=null) return $cat->toArray();

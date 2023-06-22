@@ -26,9 +26,11 @@ class PostPublication extends AbstractAction {
         CsrfService::check($csrf);
 
 
+        //Publie ou dépublie l'article
         ArticleService::publicationService($idArt);
 
 
+        //Recupère les données pour mettre à jour la page
         $id = $args['id_user'];
 
         $user = UserService::getUserById($id);
@@ -36,7 +38,7 @@ class PostPublication extends AbstractAction {
         $articles = ArticleService::getArticleByAuteurSortDateCrea($id);
 
 
-        //Renvoie la page formCreateCategorie.twig
+        //Renvoie la page listArticlesByAuteur.twig
         $view = Twig::fromRequest($request);
         return $view->render($response, '/article/listArticlesByAuteur.twig',['articles'=>$articles, 'csrf'=>$csrf, 'user'=>$user]);
     }
