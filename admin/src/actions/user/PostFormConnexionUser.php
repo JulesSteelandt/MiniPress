@@ -18,7 +18,7 @@ class PostFormConnexionUser extends AbstractAction {
         //Génère un token csrf
         $params = $request->getParsedBody();
 
-        $email = $params['email'];
+        $email = filter_var($params['email'], FILTER_SANITIZE_EMAIL);
         $mdp = $params['mdp'];
         $csrf = $params['csrf'];
 

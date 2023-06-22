@@ -19,10 +19,10 @@ class PostFormCreateUser extends AbstractAction {
         //Recupère les valeurs du form
         $params = $request->getParsedBody();
 
-        $email = $params['email'];
+        $email = filter_var($params['email'], FILTER_VALIDATE_EMAIL);
         $mdp = $params['mdp'];
-        $nom = $params['nom'];
-        $prenom = $params['prenom'];
+        $nom = filter_var($params['nom'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $prenom = filter_var($params['prenom'], FILTER_SANITIZE_SPECIAL_CHARS);
         $mdpVerif = $params['mdpVerif'];
         $csrf = $params['csrf'];
 
