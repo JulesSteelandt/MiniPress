@@ -25,6 +25,7 @@ class _MiniPressAppState extends State<MiniPressApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'MiniPress App',
       home: Scaffold(
           appBar: AppBar(
