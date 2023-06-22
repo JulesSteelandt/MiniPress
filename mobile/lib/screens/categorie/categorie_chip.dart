@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/screens/article/categorie_articles.dart';
+import 'package:mobile/screens/categorie/categorie_articles.dart';
 import 'package:mobile/utils/app_utils.dart';
 
 import '../../models/categorie.dart';
@@ -8,16 +8,6 @@ class CategorieChip extends StatelessWidget {
   final Categorie categorie;
 
   const CategorieChip({super.key, required this.categorie});
-
-  Widget buildNewPage(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppUtils.primaryBackground,
-        title: Text('Catégorie ${categorie.nom}'),
-      ),
-      body: CategorieArticles(categorie: categorie),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +28,10 @@ class CategorieChip extends StatelessWidget {
           MaterialPageRoute(builder: (BuildContext context) {
             return Builder(
               builder: (BuildContext context) {
-                return buildNewPage(context); // Appelle la fonction pour obtenir la nouvelle page
+                // crée le widget d'affichage
+                final CategorieArticles categorieArticles = CategorieArticles(categorie: categorie);
+                // Appelle la fonction pour obtenir la nouvelle page
+                return AppUtils.buildNewPage(context, 'Categorie ${categorie.nom}', categorieArticles);
               },
             );
           }),

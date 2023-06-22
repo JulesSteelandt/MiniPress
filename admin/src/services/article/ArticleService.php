@@ -78,7 +78,7 @@ class ArticleService
     }
 
     //Créer un article
-    public static function createArticle(string $titre, string $resume, string $contenu, int $id_cat)
+    public static function createArticle(string $titre, string $resume, string $contenu, int $id_cat,string $url)
     {
         $article = new Article();
         $article->titre = $titre;
@@ -87,6 +87,7 @@ class ArticleService
         $article->categorie_id = $id_cat;
         $article->date_creation = date("Y-m-d H:i:s");
         $article->auteur = $_SESSION['user']->id;
+        $article->image = $url;
         $article->save();
     }
 

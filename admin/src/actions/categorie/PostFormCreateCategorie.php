@@ -19,7 +19,7 @@ class PostFormCreateCategorie extends AbstractAction {
         //Recupère les valeurs du form
         $params = $request->getParsedBody();
 
-        $nom = $params['nom'];
+        $nom = filter_var($params['nom'], FILTER_SANITIZE_SPECIAL_CHARS);
         $csrf = $params['csrf'];
 
         //Verifie le token

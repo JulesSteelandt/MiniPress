@@ -1,2 +1,5 @@
+/**
+ * Préfixe de l'URL de l'API
+ * @type {string}
+ */
 export const API = "http://docketu.iutnc.univ-lorraine.fr:17012/api";
-// export const API = "http://127.0.0.1:17012/api";

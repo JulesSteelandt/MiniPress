@@ -19,17 +19,18 @@ class PostFormCreateArticle extends AbstractAction {
         //Recupère les valeurs du form
         $params = $request->getParsedBody();
 
-        $titre = $params['titre'];
+        $titre = filter_var($params['titre'], FILTER_SANITIZE_SPECIAL_CHARS);
         $resume = $params['resume'];
         $contenu = $params['contenu'];
-        $cat = $params['categorie'];
+        $cat = filter_var($params['categorie'], FILTER_VALIDATE_INT);
+        $image = filter_var($params['image'], FILTER_VALIDATE_URL,FILTER_SANITIZE_URL);
         $csrf = $params['csrf'];
 
         //Verifie le token
         CsrfService::check($csrf);
 
         //Insertion en base de donnée
-        ArticleService::createArticle($titre,$resume,$contenu,$cat);
+        ArticleService::createArticle($titre,$resume,$contenu,$cat,$image);
 
         //Renvoie la page formCreateCategorie.twig
         $view = Twig::fromRequest($request);
